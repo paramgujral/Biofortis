@@ -4,11 +4,16 @@ const allureReporter = require('@wdio/allure-reporter').default;
 const Page = require('./page');
 const CommonActions = require('../../actions/actions');
 
+const IFRAMEINDEX=0;
+const TITLELABMATRIXMANAGEMENT = "Labmatrix Management";
+
 class QiagramPage extends Page{
     /**
      * define selectors using getter methods
      */
-    get menuManage() {return $('##ext-gen97')};
+
+    get frame() {return $('//*[contains(@name,"c-iframepane")]')};
+    get menuManage() {return $('//td/em/button[text()="Manage"]')};
     get btnSearch() {return $('//button[@title="Search Datasources"]')};
     get inputDatasource() {return $('//input[@placeholder="Enter Datasource Name..."]')};
     get dropdownDatasourceType() {return $('//select[@class="form-control"]')};
@@ -26,7 +31,7 @@ class QiagramPage extends Page{
     get datasourceTypeStoredQueryResult() {return $$('//span[text()="Stored Query Result"]')};
 
     //paginations elements
-    get pagination() {return $('.pagination react-bootstrap-table-page-btns-ul')};
+    get pagination() {return $('//ul[@class="pagination react-bootstrap-table-page-btns-ul"]')};
     get pageNumber() {return $$('//ul/li')};
     get nextPageArrow() {return $('//li[@title="next page"]/a')};
 
@@ -36,30 +41,23 @@ class QiagramPage extends Page{
      * e.g. to login using username and password
      */
     async navigateQiagramDatasourceManager() {
+        await CommonActions.switchToIFrame(IFRAMEINDEX);
         await CommonActions.click(this.menuManage, "Manage");
+        await CommonActions.switchToWindowWithTitle(TITLELABMATRIXMANAGEMENT);
+        await browser.pause(10000);
     }
 
-    async searchDatasource(datasource, datasourceType) {
-        await CommonActions.sendKeys(this.inputDatasource, datasource, "Datasource");
-        await CommonActions.selectDropDown(this.dropdownDatasourceType, datasourceType, "Datasource Type");
+    async searchDatasource(datasource, datasourceType, searchWithBlank) {
+        if (searchWithBlank=='No'){
+            await CommonActions.sendKeys(this.inputDatasource, datasource, "Datasource");
+            await CommonActions.selectDropDown(this.dropdownDatasourceType, datasourceType, "Datasource Type");
+        }
         await CommonActions.click(this.btnSearch, "Search Datasource");
+        await browser.pause(5000);
         await expect(this.noResult).not.toBeDisplayed(); 
-        await expect(this.noResult).toBeDisplayed();
-        await this.countDatasourcetype();
     }
     
-    async countDatasourcetype() {
-
-        let datasourceCount = {
-            countSnapshot: 0,
-            countSystem: 0,
-            countForm: 0,
-            countQuery: 0,
-            countImported: 0,
-            countFlatFile: 0,
-            countStaging: 0,
-            countStoredQueryResult: 0
-        }
+    async validateDatasourceSearchWithBlankSearchString() {
 
         
         let countSnapshot=0;
@@ -69,38 +67,52 @@ class QiagramPage extends Page{
         let countImported=0;
         let countFlatFile=0;
         let countStaging=0;
-        let countStoredQueryResult=0;
+        let countStoredQueryResult=0
+
 
         if(!await (this.pagination).isDisplayed()){
             allureReporter.addStep('WARNING!!! Number of datasource are very less.', 'attachment', 'broken')
         }
 
-        for (let i=0; i<=pageNumber.length-2; i++){
-            datasourceCount.countSnapshot+=datasourceTypeSnapshot.length;
-            datasourceCount.countSystem+=datasourceTypeSystem.length;
-            datasourceCount.countForm+=datasourceTypeForm.length;
-            datasourceCount.countQuery+=datasourceTypeQuery.length;
-            datasourceCount.countImported+=datasourceTypeImported.length;
-            datasourceCount.countFlatFile+=datasourceTypeFaltFile.length;
+        await browser.pause(5000);
+        // for (let i=0; i<=this.pageNumber.length; i++){
+        //     countSnapshot += await datasourceTypeSnapshot.length;
+        //     countSystem += await datasourceTypeSystem.length;
+        //     countForm += await datasourceTypeForm.length;
+        //     countQuery += await datasourceTypeQuery.length;
+        //     countImported += await datasourceTypeImported.length;
+        //     countFlatFile += await datasourceTypeFaltFile.length;
+        //     if (await (this.nextPageArrow).isDisplayed()){
+        //         await CommonActions.click(this.nextPageArrow, "Pagination Next Page");
+        //     } 
+        // }
+
+        do {
+            countSnapshot  += await  this.datasourceTypeSnapshot.length;
+            countSystem  += await  this.datasourceTypeSystem.length;
+            countForm  += await  this.datasourceTypeForm.length;
+            countQuery  += await  this.datasourceTypeQuery.length;
+            countImported  += await  this.datasourceTypeImported.length;
+            countFlatFile  += await  this.datasourceTypeFaltFile.length;
             if (await (this.nextPageArrow).isDisplayed()){
                 await CommonActions.click(this.nextPageArrow, "Pagination Next Page");
             } 
-        }
+        }while(await (this.nextPageArrow).isDisplayed())
 
-        allureReporter.addStep("Snapshot Count: "+datasourceCount.countSnapshot+ ", System Count: "+datasourceCount.countSystem+ 
-        ", Form Count: "+datasourceCount.countForm+ ", Query Count: "+datasourceCount.countQuery+ ", Imported Count: "+datasourceCount.countImported+ 
-        ", Flat File Count: " +datasourceCount.countFlatFile+ ", Staging Count: "+datasourceCount.countStaging+
-        ", Stored Query Result Count: "+datasourceCount.countStoredQueryResult, 'attachment', 'passed')
+        allureReporter.addStep("Snapshot Count: "+countSnapshot+ ", System Count: "+countSystem+ 
+        ", Form Count: "+countForm+ ", Query Count: "+countQuery+ ", Imported Count: "+countImported+ 
+        ", Flat File Count: " +countFlatFile+ ", Staging Count: "+countStaging+
+        ", Stored Query Result Count: "+countStoredQueryResult, 'attachment', 'passed')
 
-        let datasourceTypeCounter=0;
-        for (const [key, value] of Object.entries(datasourceCount)) {
-            if(value===0){
-                datasourceTypeCounter+=1;
-            }
-          }
-        if(datasourceTypeCounter<4){
-            allureReporter.addStep('WARNING!!! types of datasource  in search are very less.', 'attachment', 'broken')
-        }
+        // let datasourceTypeCounter=0;
+        // for (const [key, value] of Object.entries(datasourceCount)) {
+        //     if(value===0){
+        //         datasourceTypeCounter += await 1;
+        //     }
+        //   }
+        // if(datasourceTypeCounter<4){
+        //     allureReporter.addStep('WARNING!!! types of datasource  in search are very less.', 'attachment', 'broken')
+        // }
 
     }
 

@@ -1,0 +1,131 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1647619282592' stop='1647619348957'>
+    <name>test suite</name>
+    <title>test suite</title>
+    <test-cases>
+        <test-case start='1647619282594' status='broken' stop='1647619348952'>
+            <name>Form Management Audit Data</name>
+            <title>Form Management Audit Data</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+            </parameters>
+            <steps>
+                <step start='1647619286358' status='passed' stop='1647619286358'>
+                    <name>able to enter Paramjeet into the field User Name</name>
+                    <title>able to enter Paramjeet into the field User Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619286515' status='passed' stop='1647619286515'>
+                    <name>able to enter Bio123@@ into the field Password</name>
+                    <title>able to enter Bio123@@ into the field Password</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619288749' status='passed' stop='1647619288749'>
+                    <name>able to click Log in</name>
+                    <title>able to click Log in</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619307758' status='passed' stop='1647619307758'>
+                    <name>able to click Account Link</name>
+                    <title>able to click Account Link</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619307914' status='passed' stop='1647619307914'>
+                    <name>able to click Administration</name>
+                    <title>able to click Administration</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619320482' status='passed' stop='1647619320482'>
+                    <name>able to click Form from left navigation</name>
+                    <title>able to click Form from left navigation</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619320656' status='passed' stop='1647619320656'>
+                    <name>able to click New Form</name>
+                    <title>able to click New Form</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619321338' status='passed' stop='1647619321338'>
+                    <name>able to click Biomaterial</name>
+                    <title>able to click Biomaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619321665' status='passed' stop='1647619321665'>
+                    <name>able to enter Test Automation Form into the field New Form Name</name>
+                    <title>able to enter Test Automation Form into the field New Form Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619321818' status='passed' stop='1647619321818'>
+                    <name>able to click Define Fields</name>
+                    <title>able to click Define Fields</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619323211' status='passed' stop='1647619323211'>
+                    <name>able to click Add Field</name>
+                    <title>able to click Add Field</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619323780' status='passed' stop='1647619323780'>
+                    <name>able to enter Field1 into the field Field Name</name>
+                    <title>able to enter Field1 into the field Field Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619344016' status='passed' stop='1647619344016'>
+                    <name>able to enter Lable1 into the field Field Lable</name>
+                    <title>able to enter Lable1 into the field Field Lable</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619344225' status='passed' stop='1647619344225'>
+                    <name>able to click Field Data type</name>
+                    <title>able to click Field Data type</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619344427' status='passed' stop='1647619344427'>
+                    <name>able to click Field Data type</name>
+                    <title>able to click Field Data type</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619348945' status='failed' stop='1647619348945'>
+                    <name>unable to click Field flag - Required as the element not displayed</name>
+                    <title>unable to click Field flag - Required as the element not displayed</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <failure>
+                <message>unable to click Field flag - Required</message>
+                <stack-trace>AssertionError: unable to click Field flag - Required
+                    at actions.click (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\actions\actions.js:52:26)
+                    at processTicksAndRejections (node:internal/process/task_queues:94:5)
+                    at async AdministrationPage.addFields (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\pageobjects\adminstration.page.js:71:17)
+                    at async AdministrationPage.createNewForm (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\pageobjects\adminstration.page.js:55:9)
+                    at async Context.&lt;anonymous> (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\specs\test suite.js:25:9)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

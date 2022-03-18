@@ -51,7 +51,7 @@ class BiomaterialSearchPage extends Page{
     }
 
     async searchBiomaterialWithStudyCode (studyCode) {
-        await CommonActions.sendKeys(txtStudyCode, studyCode, "Study Code");
+        await CommonActions.sendKeys(this.txtStudyCode, studyCode, "Study Code");
         await browser.keys("\uE007");
         await expect(this.searchFormNoRecords).not.toBeDisplayed(); 
         let elemSearchResultStudy = $$(`//td/div[text()="${studyCode}"]`);

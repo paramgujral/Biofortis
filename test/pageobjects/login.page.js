@@ -7,7 +7,7 @@ class LoginPage extends Page{
     /**
      * define selectors using getter methods
      */
-    get inputUsername() {return $('#username')}
+    get inputUsername() {return $('//input[@name="username"]')}
     get inputPassword() { return $('//input[@name="password"]')}
     get btnSubmit() { return $('#submitButton');}
 
@@ -15,17 +15,20 @@ class LoginPage extends Page{
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
      */
-    async login () {
-        await CommonActions.sendKeys(this.inputUsername, Data.username, "User Name");
-        await CommonActions.sendKeys(this.inputPassword, Data.password, "Password");
-        await CommonAction.click(this.btnSubm, "Log in");
+    async login (url, username, password) {
+        await browser.url(url);
+        await browser.maximizeWindow();
+        await CommonActions.sendKeys(this.inputUsername, username, "User Name");
+        await CommonActions.sendKeys(this.inputPassword, password, "Password");
+        await CommonActions.click(this.btnSubmit, "Log in");
+        await browser.pause(5000);
     }
 
     /**
      * overwrite specific options to adapt it to page object
      */
     open() {
-        return super.open('login');
+        return super.open();
     }
 }
 

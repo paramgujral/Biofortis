@@ -1,0 +1,69 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1647615478673' stop='1647615515805'>
+    <name>test suite</name>
+    <title>test suite</title>
+    <test-cases>
+        <test-case start='1647615478675' status='broken' stop='1647615515803'>
+            <name>Form Management Audit Data</name>
+            <title>Form Management Audit Data</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+            </parameters>
+            <steps>
+                <step start='1647615481216' status='passed' stop='1647615481216'>
+                    <name>able to enter Paramjeet into the field User Name</name>
+                    <title>able to enter Paramjeet into the field User Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647615481318' status='passed' stop='1647615481318'>
+                    <name>able to enter Bio123@@ into the field Password</name>
+                    <title>able to enter Bio123@@ into the field Password</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647615483073' status='passed' stop='1647615483073'>
+                    <name>able to click Log in</name>
+                    <title>able to click Log in</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647615500606' status='passed' stop='1647615500606'>
+                    <name>able to click Account Link</name>
+                    <title>able to click Account Link</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647615500758' status='passed' stop='1647615500758'>
+                    <name>able to click Administration</name>
+                    <title>able to click Administration</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647615515799' status='failed' stop='1647615515799'>
+                    <name>unable to click Form from left navigation as the element not displayed</name>
+                    <title>unable to click Form from left navigation as the element not displayed</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <failure>
+                <message>unable to click Form from left navigation</message>
+                <stack-trace>AssertionError: unable to click Form from left navigation
+                    at actions.click (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\actions\actions.js:52:26)
+                    at async AdministrationPage.createNewForm (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\pageobjects\adminstration.page.js:48:9)
+                    at async Context.&lt;anonymous> (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\specs\test suite.js:26:9)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

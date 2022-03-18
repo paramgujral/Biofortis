@@ -1,0 +1,111 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1647631376057' stop='1647631434463'>
+    <name>test suite</name>
+    <title>test suite</title>
+    <test-cases>
+        <test-case start='1647631376057' status='broken' stop='1647631434459'>
+            <name>Create Biomaterial from multiple locations</name>
+            <title>Create Biomaterial from multiple locations</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+            </parameters>
+            <steps>
+                <step start='1647631379995' status='passed' stop='1647631379995'>
+                    <name>able to enter Paramjeet into the field User Name</name>
+                    <title>able to enter Paramjeet into the field User Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647631382103' status='passed' stop='1647631382103'>
+                    <name>able to enter Bio123@@ into the field Password</name>
+                    <title>able to enter Bio123@@ into the field Password</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647631385552' status='passed' stop='1647631385552'>
+                    <name>able to click Log in</name>
+                    <title>able to click Log in</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647631397106' status='passed' stop='1647631397106'>
+                    <name>able to click Data Entry</name>
+                    <title>able to click Data Entry</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647631399286' status='passed' stop='1647631399286'>
+                    <name>able to click BioMaterial</name>
+                    <title>able to click BioMaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647631401457' status='passed' stop='1647631401457'>
+                    <name>able to click Find Study</name>
+                    <title>able to click Find Study</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647631403616' status='passed' stop='1647631403616'>
+                    <name>able to enter Test Automation into the field Enter Study for Creating Biomaterial</name>
+                    <title>able to enter Test Automation into the field Enter Study for Creating Biomaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647631405800' status='passed' stop='1647631405800'>
+                    <name>able to click Create BioMaterial</name>
+                    <title>able to click Create BioMaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647631407979' status='passed' stop='1647631407979'>
+                    <name>able to enter Test Automation Biomaterial into the field Biomaterial Name</name>
+                    <title>able to enter Test Automation Biomaterial into the field Biomaterial Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647631410090' status='passed' stop='1647631410090'>
+                    <name>able to click Barcode</name>
+                    <title>able to click Barcode</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647631412229' status='passed' stop='1647631412229'>
+                    <name>able to enter TA1234 into the field Barcode</name>
+                    <title>able to enter TA1234 into the field Barcode</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647631414379' status='passed' stop='1647631414379'>
+                    <name>able to click Save BioMaterial</name>
+                    <title>able to click Save BioMaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647631434451' status='failed' stop='1647631434451'>
+                    <name>unable to click Child Biomaterials as the element not displayed</name>
+                    <title>unable to click Child Biomaterials as the element not displayed</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <failure>
+                <message>unable to click Child Biomaterials</message>
+                <stack-trace>AssertionError: unable to click Child Biomaterials
+                    at actions.click (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\actions\actions.js:53:26)
+                    at async DataEntryBiomaterialPage.navigateToChildBiomaterial (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\pageobjects\biomaterial.new.page.js:51:9)
+                    at async Context.&lt;anonymous> (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\specs\test suite.js:44:9)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

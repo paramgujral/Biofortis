@@ -1,0 +1,125 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1647617187136' stop='1647617222444'>
+    <name>test suite</name>
+    <title>test suite</title>
+    <test-cases>
+        <test-case start='1647617187138' status='broken' stop='1647617222442'>
+            <name>Form Management Audit Data</name>
+            <title>Form Management Audit Data</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+            </parameters>
+            <steps>
+                <step start='1647617189574' status='passed' stop='1647617189574'>
+                    <name>able to enter Paramjeet into the field User Name</name>
+                    <title>able to enter Paramjeet into the field User Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647617189669' status='passed' stop='1647617189669'>
+                    <name>able to enter Bio123@@ into the field Password</name>
+                    <title>able to enter Bio123@@ into the field Password</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647617191105' status='passed' stop='1647617191105'>
+                    <name>able to click Log in</name>
+                    <title>able to click Log in</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647617204081' status='passed' stop='1647617204081'>
+                    <name>able to click Account Link</name>
+                    <title>able to click Account Link</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647617204219' status='passed' stop='1647617204219'>
+                    <name>able to click Administration</name>
+                    <title>able to click Administration</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647617214600' status='passed' stop='1647617214600'>
+                    <name>able to click Form from left navigation</name>
+                    <title>able to click Form from left navigation</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647617214826' status='passed' stop='1647617214826'>
+                    <name>able to click New Form</name>
+                    <title>able to click New Form</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647617215682' status='passed' stop='1647617215682'>
+                    <name>able to click Biomaterial</name>
+                    <title>able to click Biomaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647617215896' status='passed' stop='1647617215896'>
+                    <name>able to enter Test Automation Form into the field New Form Name</name>
+                    <title>able to enter Test Automation Form into the field New Form Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647617216070' status='passed' stop='1647617216070'>
+                    <name>able to click Define Fields</name>
+                    <title>able to click Define Fields</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647617217483' status='passed' stop='1647617217483'>
+                    <name>able to click Add Field</name>
+                    <title>able to click Add Field</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647617221186' status='passed' stop='1647617221186'>
+                    <name>able to click Field Data type</name>
+                    <title>able to click Field Data type</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647617221236' status='passed' stop='1647617221236'>
+                    <name>able to click Field Data type</name>
+                    <title>able to click Field Data type</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647617221299' status='passed' stop='1647617221299'>
+                    <name>able to click Field Data type</name>
+                    <title>able to click Field Data type</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647617222439' status='failed' stop='1647617222439'>
+                    <name>unable to click Save Form as the element not displayed</name>
+                    <title>unable to click Save Form as the element not displayed</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <failure>
+                <message>unable to click Save Form</message>
+                <stack-trace>AssertionError: unable to click Save Form
+                    at actions.click (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\actions\actions.js:52:26)
+                    at runMicrotasks (&lt;anonymous>)
+                    at processTicksAndRejections (node:internal/process/task_queues:94:5)
+                    at async AdministrationPage.createNewForm (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\pageobjects\adminstration.page.js:56:9)
+                    at async Context.&lt;anonymous> (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\specs\test suite.js:25:9)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

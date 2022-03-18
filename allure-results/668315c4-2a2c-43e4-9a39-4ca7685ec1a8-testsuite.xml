@@ -1,0 +1,179 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1647619723975' stop='1647619794865'>
+    <name>test suite</name>
+    <title>test suite</title>
+    <test-cases>
+        <test-case start='1647619723976' status='broken' stop='1647619794861'>
+            <name>Form Management Audit Data</name>
+            <title>Form Management Audit Data</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+            </parameters>
+            <steps>
+                <step start='1647619727227' status='passed' stop='1647619727227'>
+                    <name>able to enter Paramjeet into the field User Name</name>
+                    <title>able to enter Paramjeet into the field User Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619727344' status='passed' stop='1647619727344'>
+                    <name>able to enter Bio123@@ into the field Password</name>
+                    <title>able to enter Bio123@@ into the field Password</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619729838' status='passed' stop='1647619729838'>
+                    <name>able to click Log in</name>
+                    <title>able to click Log in</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619742988' status='passed' stop='1647619742988'>
+                    <name>able to click Account Link</name>
+                    <title>able to click Account Link</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619743155' status='passed' stop='1647619743155'>
+                    <name>able to click Administration</name>
+                    <title>able to click Administration</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619747966' status='passed' stop='1647619747966'>
+                    <name>able to click Form from left navigation</name>
+                    <title>able to click Form from left navigation</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619748178' status='passed' stop='1647619748178'>
+                    <name>able to click New Form</name>
+                    <title>able to click New Form</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619748963' status='passed' stop='1647619748963'>
+                    <name>able to click Biomaterial</name>
+                    <title>able to click Biomaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619749187' status='passed' stop='1647619749187'>
+                    <name>able to enter Test Automation Form into the field New Form Name</name>
+                    <title>able to enter Test Automation Form into the field New Form Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619749366' status='passed' stop='1647619749366'>
+                    <name>able to click Define Fields</name>
+                    <title>able to click Define Fields</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619750346' status='passed' stop='1647619750346'>
+                    <name>able to click Add Field</name>
+                    <title>able to click Add Field</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619750876' status='passed' stop='1647619750876'>
+                    <name>able to enter Field1 into the field Field Name</name>
+                    <title>able to enter Field1 into the field Field Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619771035' status='passed' stop='1647619771035'>
+                    <name>able to enter Lable1 into the field Field Lable</name>
+                    <title>able to enter Lable1 into the field Field Lable</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619771198' status='passed' stop='1647619771198'>
+                    <name>able to click Field Data type</name>
+                    <title>able to click Field Data type</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619771341' status='passed' stop='1647619771341'>
+                    <name>able to click Field Data type</name>
+                    <title>able to click Field Data type</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619771441' status='passed' stop='1647619771441'>
+                    <name>able to click Field flag - Required</name>
+                    <title>able to click Field flag - Required</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619771540' status='passed' stop='1647619771540'>
+                    <name>able to click Add Another Field</name>
+                    <title>able to click Add Another Field</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619771653' status='passed' stop='1647619771653'>
+                    <name>able to enter Field2 into the field Field Name</name>
+                    <title>able to enter Field2 into the field Field Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619791909' status='passed' stop='1647619791909'>
+                    <name>able to enter Lable2 into the field Field Lable</name>
+                    <title>able to enter Lable2 into the field Field Lable</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619792063' status='passed' stop='1647619792063'>
+                    <name>able to click Field Data type</name>
+                    <title>able to click Field Data type</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619792236' status='passed' stop='1647619792236'>
+                    <name>able to click Field Data type</name>
+                    <title>able to click Field Data type</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619792368' status='passed' stop='1647619792368'>
+                    <name>able to click Field flag - Required</name>
+                    <title>able to click Field flag - Required</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619792465' status='passed' stop='1647619792465'>
+                    <name>able to click Add Another Field</name>
+                    <title>able to click Add Another Field</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647619792645' status='passed' stop='1647619792645'>
+                    <name>able to enter Field3 into the field Field Name</name>
+                    <title>able to enter Field3 into the field Field Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <failure>
+                <message>Timeout of 60000ms exceeded. The execution in the test "test suite Form Management Audit Data" took too long. Try to reduce the run time or increase your timeout for test specs (https://webdriver.io/docs/timeouts). (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\specs\test suite.js)</message>
+                <stack-trace>Error: Timeout of 60000ms exceeded. The execution in the test "test suite Form Management Audit Data" took too long. Try to reduce the run time or increase your timeout for test specs (https://webdriver.io/docs/timeouts). (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\specs\test suite.js)
+                    at createTimeoutError (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\node_modules\mocha\lib\errors.js:498:15)
+                    at Test.Runnable._timeoutError (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\node_modules\mocha\lib\runnable.js:431:10)
+                    at Timeout.&lt;anonymous> (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\node_modules\mocha\lib\runnable.js:246:24)
+                    at listOnTimeout (node:internal/timers:557:17)
+                    at processTimers (node:internal/timers:500:7)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

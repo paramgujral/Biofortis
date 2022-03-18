@@ -1,0 +1,99 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1647624352338' stop='1647624386593'>
+    <name>test suite</name>
+    <title>test suite</title>
+    <test-cases>
+        <test-case start='1647624352338' status='broken' stop='1647624386589'>
+            <name>Form Management Audit Data - Edit</name>
+            <title>Form Management Audit Data - Edit</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+            </parameters>
+            <steps>
+                <step start='1647624355203' status='passed' stop='1647624355203'>
+                    <name>able to enter Paramjeet into the field User Name</name>
+                    <title>able to enter Paramjeet into the field User Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647624355368' status='passed' stop='1647624355369'>
+                    <name>able to enter Bio123@@ into the field Password</name>
+                    <title>able to enter Bio123@@ into the field Password</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647624357605' status='passed' stop='1647624357605'>
+                    <name>able to click Log in</name>
+                    <title>able to click Log in</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647624363516' status='passed' stop='1647624363516'>
+                    <name>able to click Account Link</name>
+                    <title>able to click Account Link</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647624363680' status='passed' stop='1647624363680'>
+                    <name>able to click Administration</name>
+                    <title>able to click Administration</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647624367963' status='passed' stop='1647624367963'>
+                    <name>able to click Form from left navigation</name>
+                    <title>able to click Form from left navigation</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647624368837' status='passed' stop='1647624368837'>
+                    <name>able to enter Test Automation Form into the field Search form name</name>
+                    <title>able to enter Test Automation Form into the field Search form name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647624370279' status='passed' stop='1647624370279'>
+                    <name>able to click Matched form</name>
+                    <title>able to click Matched form</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647624371171' status='passed' stop='1647624371171'>
+                    <name>able to click First Field</name>
+                    <title>able to click First Field</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647624371370' status='passed' stop='1647624371370'>
+                    <name>able to enter Field1 Updated into the field Udpate Lable Name</name>
+                    <title>able to enter Field1 Updated into the field Udpate Lable Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647624386581' status='failed' stop='1647624386582'>
+                    <name>unable to click Udpate Button as the element not displayed</name>
+                    <title>unable to click Udpate Button as the element not displayed</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <failure>
+                <message>unable to click Udpate Button</message>
+                <stack-trace>AssertionError: unable to click Udpate Button
+                    at actions.click (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\actions\actions.js:52:26)
+                    at async AdministrationPage.updateForm (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\pageobjects\adminstration.page.js:92:9)
+                    at async Context.&lt;anonymous> (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\specs\test suite.js:31:9)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

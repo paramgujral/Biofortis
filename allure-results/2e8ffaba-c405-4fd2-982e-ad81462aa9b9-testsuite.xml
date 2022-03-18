@@ -1,0 +1,153 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1647629897011' stop='1647629971511'>
+    <name>test suite</name>
+    <title>test suite</title>
+    <test-cases>
+        <test-case start='1647629897011' status='broken' stop='1647629971507'>
+            <name>Create Biomaterial from multiple locations</name>
+            <title>Create Biomaterial from multiple locations</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+            </parameters>
+            <steps>
+                <step start='1647629899268' status='passed' stop='1647629899268'>
+                    <name>able to enter Paramjeet into the field User Name</name>
+                    <title>able to enter Paramjeet into the field User Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629901363' status='passed' stop='1647629901363'>
+                    <name>able to enter Bio123@@ into the field Password</name>
+                    <title>able to enter Bio123@@ into the field Password</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629904763' status='passed' stop='1647629904763'>
+                    <name>able to click Log in</name>
+                    <title>able to click Log in</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629915952' status='passed' stop='1647629915952'>
+                    <name>able to click Data Entry</name>
+                    <title>able to click Data Entry</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629918148' status='passed' stop='1647629918148'>
+                    <name>able to click BioMaterial</name>
+                    <title>able to click BioMaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629920306' status='passed' stop='1647629920306'>
+                    <name>able to click Find Study</name>
+                    <title>able to click Find Study</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629922493' status='passed' stop='1647629922493'>
+                    <name>able to enter Test Automation into the field Enter Study for Creating Biomaterial</name>
+                    <title>able to enter Test Automation into the field Enter Study for Creating Biomaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629924656' status='passed' stop='1647629924656'>
+                    <name>able to click Create BioMaterial</name>
+                    <title>able to click Create BioMaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629926879' status='passed' stop='1647629926879'>
+                    <name>able to enter Test Automation Biomaterial into the field Biomaterial Name</name>
+                    <title>able to enter Test Automation Biomaterial into the field Biomaterial Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629928994' status='passed' stop='1647629928994'>
+                    <name>able to click Barcode</name>
+                    <title>able to click Barcode</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629931150' status='passed' stop='1647629931150'>
+                    <name>able to enter TA1234 into the field Barcode</name>
+                    <title>able to enter TA1234 into the field Barcode</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629933321' status='passed' stop='1647629933321'>
+                    <name>able to click Save BioMaterial</name>
+                    <title>able to click Save BioMaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629938525' status='passed' stop='1647629938525'>
+                    <name>able to click Child Biomaterials</name>
+                    <title>able to click Child Biomaterials</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629940659' status='passed' stop='1647629940659'>
+                    <name>able to click New Child Biomaterial</name>
+                    <title>able to click New Child Biomaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629942833' status='passed' stop='1647629942833'>
+                    <name>able to click Child Biomaterial</name>
+                    <title>able to click Child Biomaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629945008' status='passed' stop='1647629945008'>
+                    <name>able to enter Test Automation Biomaterial - Chilc into the field Biomaterial Name</name>
+                    <title>able to enter Test Automation Biomaterial - Chilc into the field Biomaterial Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629947172' status='passed' stop='1647629947172'>
+                    <name>able to click Barcode</name>
+                    <title>able to click Barcode</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629949304' status='passed' stop='1647629949304'>
+                    <name>able to enter ChildTA1234 into the field Barcode</name>
+                    <title>able to enter ChildTA1234 into the field Barcode</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629951419' status='passed' stop='1647629951419'>
+                    <name>able to click Save BioMaterial</name>
+                    <title>able to click Save BioMaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647629971499' status='failed' stop='1647629971499'>
+                    <name>unable to click Study from top left as the element not displayed</name>
+                    <title>unable to click Study from top left as the element not displayed</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <failure>
+                <message>unable to click Study from top left</message>
+                <stack-trace>AssertionError: unable to click Study from top left
+                    at actions.click (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\actions\actions.js:53:26)
+                    at async DataEntryBiomaterialPage.navigateToStudyFromBiomaterial (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\pageobjects\biomaterial.new.page.js:56:9)
+                    at async Context.&lt;anonymous> (C:\Users\paramjeet.gujral\Documents\WDIO-Automation Framework\test\specs\test suite.js:47:9)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

@@ -1,0 +1,92 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1647625723060' stop='1647625760680'>
+    <name>test suite</name>
+    <title>test suite</title>
+    <test-cases>
+        <test-case start='1647625723060' status='passed' stop='1647625760678'>
+            <name>Form Management Audit Data - Delete</name>
+            <title>Form Management Audit Data - Delete</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+            </parameters>
+            <steps>
+                <step start='1647625726270' status='passed' stop='1647625726270'>
+                    <name>able to enter Paramjeet into the field User Name</name>
+                    <title>able to enter Paramjeet into the field User Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647625726412' status='passed' stop='1647625726412'>
+                    <name>able to enter Bio123@@ into the field Password</name>
+                    <title>able to enter Bio123@@ into the field Password</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647625728540' status='passed' stop='1647625728540'>
+                    <name>able to click Log in</name>
+                    <title>able to click Log in</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647625742770' status='passed' stop='1647625742770'>
+                    <name>able to click Account Link</name>
+                    <title>able to click Account Link</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647625742944' status='passed' stop='1647625742944'>
+                    <name>able to click Administration</name>
+                    <title>able to click Administration</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647625757468' status='passed' stop='1647625757468'>
+                    <name>able to click Form from left navigation</name>
+                    <title>able to click Form from left navigation</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647625758218' status='passed' stop='1647625758218'>
+                    <name>able to enter undefined into the field Search form name</name>
+                    <title>able to enter undefined into the field Search form name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647625760063' status='passed' stop='1647625760063'>
+                    <name>able to click Check box for form</name>
+                    <title>able to click Check box for form</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647625760323' status='passed' stop='1647625760323'>
+                    <name>able to click Delete form</name>
+                    <title>able to click Delete form</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647625760493' status='passed' stop='1647625760493'>
+                    <name>able to click Yes on confirm delete form pop-up</name>
+                    <title>able to click Yes on confirm delete form pop-up</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647625760678' status='passed' stop='1647625760678'>
+                    <name>able to enter Bio123@@ into the field Password</name>
+                    <title>able to enter Bio123@@ into the field Password</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

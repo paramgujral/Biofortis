@@ -1,0 +1,74 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1647627174751' stop='1647627201754'>
+    <name>test suite</name>
+    <title>test suite</title>
+    <test-cases>
+        <test-case start='1647627174751' status='passed' stop='1647627201752'>
+            <name>Create Biomaterial from multiple locations</name>
+            <title>Create Biomaterial from multiple locations</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+                <parameter kind='argument' name='browser' value='chrome-99.0.4844.74'/>
+            </parameters>
+            <steps>
+                <step start='1647627177611' status='passed' stop='1647627177611'>
+                    <name>able to enter Paramjeet into the field User Name</name>
+                    <title>able to enter Paramjeet into the field User Name</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647627179703' status='passed' stop='1647627179703'>
+                    <name>able to enter Bio123@@ into the field Password</name>
+                    <title>able to enter Bio123@@ into the field Password</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647627183783' status='passed' stop='1647627183783'>
+                    <name>able to click Log in</name>
+                    <title>able to click Log in</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647627191032' status='passed' stop='1647627191032'>
+                    <name>able to click Data Entry</name>
+                    <title>able to click Data Entry</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647627193217' status='passed' stop='1647627193217'>
+                    <name>able to click BioMaterial</name>
+                    <title>able to click BioMaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647627195399' status='passed' stop='1647627195399'>
+                    <name>able to click Find Study</name>
+                    <title>able to click Find Study</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647627197569' status='passed' stop='1647627197569'>
+                    <name>able to enter Test Automation into the field Enter Study for Creating Biomaterial</name>
+                    <title>able to enter Test Automation into the field Enter Study for Creating Biomaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1647627199713' status='passed' stop='1647627199713'>
+                    <name>able to click Create BioMaterial</name>
+                    <title>able to click Create BioMaterial</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
