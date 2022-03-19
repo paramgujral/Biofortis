@@ -1,0 +1,524 @@
+{
+  "uid" : "e913a82d8163c601",
+  "name" : "02-Form Management Audit Data - Create new",
+  "fullName" : "test suite.02-Form Management Audit Data - Create new",
+  "historyId" : "e5670e91ee4db3978e164c9c5784e255",
+  "time" : {
+    "start" : 1647705220176,
+    "stop" : 1647705348229,
+    "duration" : 128053
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "unable to enter Field Name",
+  "statusTrace" : "AssertionError: unable to enter Field Name\n                    at actions.sendKeys (C:\\Users\\paramjeet.gujral\\Documents\\WDIO-Automation Framework\\actions\\actions.js:147:20)\n                    at async AdministrationPage.addFields (C:\\Users\\paramjeet.gujral\\Documents\\WDIO-Automation Framework\\test\\pageobjects\\adminstration.page.js:64:13)\n                    at async Context.<anonymous> (C:\\Users\\paramjeet.gujral\\Documents\\WDIO-Automation Framework\\test\\specs\\test suite.js:30:9)",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 1,
+  "retriesStatusChange" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "unable to enter Field Name",
+    "statusTrace" : "AssertionError: unable to enter Field Name\n                    at actions.sendKeys (C:\\Users\\paramjeet.gujral\\Documents\\WDIO-Automation Framework\\actions\\actions.js:147:20)\n                    at async AdministrationPage.addFields (C:\\Users\\paramjeet.gujral\\Documents\\WDIO-Automation Framework\\test\\pageobjects\\adminstration.page.js:64:13)\n                    at async Context.<anonymous> (C:\\Users\\paramjeet.gujral\\Documents\\WDIO-Automation Framework\\test\\specs\\test suite.js:30:9)",
+    "steps" : [ {
+      "name" : "able to enter Paramjeet into the field User Name",
+      "time" : {
+        "start" : 1647705222126,
+        "stop" : 1647705222126,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to enter Bio123@@ into the field Password",
+      "time" : {
+        "start" : 1647705224229,
+        "stop" : 1647705224229,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Checkbox - Session Termination",
+      "time" : {
+        "start" : 1647705226316,
+        "stop" : 1647705226316,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Log in",
+      "time" : {
+        "start" : 1647705229739,
+        "stop" : 1647705229739,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Account Link",
+      "time" : {
+        "start" : 1647705240385,
+        "stop" : 1647705240385,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Administration",
+      "time" : {
+        "start" : 1647705242586,
+        "stop" : 1647705242586,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Form from left navigation",
+      "time" : {
+        "start" : 1647705249536,
+        "stop" : 1647705249536,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click New Form",
+      "time" : {
+        "start" : 1647705251751,
+        "stop" : 1647705251751,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Biomaterial",
+      "time" : {
+        "start" : 1647705253905,
+        "stop" : 1647705253905,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to enter Test Automation Form into the field New Form Name",
+      "time" : {
+        "start" : 1647705256031,
+        "stop" : 1647705256031,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Define Fields",
+      "time" : {
+        "start" : 1647705258187,
+        "stop" : 1647705258187,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Add Field",
+      "time" : {
+        "start" : 1647705260523,
+        "stop" : 1647705260523,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to enter Field1 into the field Field Name",
+      "time" : {
+        "start" : 1647705260993,
+        "stop" : 1647705260993,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to enter Lable1 into the field Field Lable",
+      "time" : {
+        "start" : 1647705283142,
+        "stop" : 1647705283142,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Field Data type",
+      "time" : {
+        "start" : 1647705285289,
+        "stop" : 1647705285289,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Field Data type",
+      "time" : {
+        "start" : 1647705287426,
+        "stop" : 1647705287426,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Field flag - Required",
+      "time" : {
+        "start" : 1647705289552,
+        "stop" : 1647705289552,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Add Another Field",
+      "time" : {
+        "start" : 1647705291682,
+        "stop" : 1647705291682,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Add",
+      "time" : {
+        "start" : 1647705293903,
+        "stop" : 1647705293903,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to enter Field2 into the field Field Name",
+      "time" : {
+        "start" : 1647705296058,
+        "stop" : 1647705296058,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to enter Lable2 into the field Field Lable",
+      "time" : {
+        "start" : 1647705318231,
+        "stop" : 1647705318231,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Field Data type",
+      "time" : {
+        "start" : 1647705320429,
+        "stop" : 1647705320429,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Field Data type",
+      "time" : {
+        "start" : 1647705322579,
+        "stop" : 1647705322579,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Field flag - Required",
+      "time" : {
+        "start" : 1647705324726,
+        "stop" : 1647705324726,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Add Another Field",
+      "time" : {
+        "start" : 1647705326838,
+        "stop" : 1647705326838,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Add",
+      "time" : {
+        "start" : 1647705329028,
+        "stop" : 1647705329028,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Save Form",
+      "time" : {
+        "start" : 1647705331165,
+        "stop" : 1647705331165,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "unable to click Add Field as the element not displayed",
+      "time" : {
+        "start" : 1647705337635,
+        "stop" : 1647705337635,
+        "duration" : 0
+      },
+      "status" : "failed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "unable to enter Field1 into the field Field Name",
+      "time" : {
+        "start" : 1647705348224,
+        "stop" : 1647705348224,
+        "duration" : 0
+      },
+      "status" : "failed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true,
+    "stepsCount" : 29
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-0"
+  }, {
+    "name" : "suite",
+    "value" : "test suite"
+  }, {
+    "name" : "testClass",
+    "value" : "test suite"
+  }, {
+    "name" : "testMethod",
+    "value" : "02-Form Management Audit Data - Create new"
+  }, {
+    "name" : "package",
+    "value" : "test suite"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-99.0.4844.74"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "4c4d9376fcbc351d",
+      "status" : "broken",
+      "statusDetails" : "unable to click Field Data type",
+      "time" : {
+        "start" : 1647704778219,
+        "stop" : 1647704931872,
+        "duration" : 153653
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "e913a82d8163c601.json",
+  "parameterValues" : [ "chrome-99.0.4844.74" ]
+}

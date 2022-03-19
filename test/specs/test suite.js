@@ -17,30 +17,30 @@ describe('test suite', () => {
         await LoginPage.login(Data.url, Data.userName, Data.password);
     })
 
-    it('Datasource basic search and pagination', async () => {
+    it('01-Datasource basic search and pagination', async () => {
         await HomePage.navigateToQiagram(); 
         await QiagramPage.navigateQiagramDatasourceManager();
         await QiagramPage.searchDatasource(Data.dataSourceSearch.datasourceName, Data.dataSourceSearch.datasourceType, "Yes");
         await QiagramPage.validateDatasourceSearchWithBlankSearchString();
     });
 
-    it('Form Management Audit Data - Create new', async () => {
+    it('03-Form Management Audit Data - Create new', async () => {
         await HomePage.navigateToAdministration();
         await AdminPage.createNewForm(Data.newFormOption, Data.newFormName);
         await AdminPage.addFields();
     });
 
-    it('Form Management Audit Data - Edit', async () => {
+    it('03-Form Management Audit Data - Edit', async () => {
         await HomePage.navigateToAdministration();
         await AdminPage.updateForm(Data.newFormName, Data.FormFields.Fields[1].name, Data.updateFieldName)
     });
 
-    it('History is not available for deleted records', async () => {
+    it('04-History is not available for deleted records', async () => {
         await HomePage.navigateToAdministration();
         await AdminPage.deletForm(Data.newFormName);
     });
     
-    it('Create Biomaterial from multiple locations', async () => {
+    it('05-Create Biomaterial from multiple locations', async () => {
         await HomePage.navigateToCreateBiomaterialFromDataEntry(Data.studyCode);
         await BiomaterialNew.createBiomaterial(Data.newBiomaterialName, Data.newBiomaterialCode);
         await BiomaterialNew.navigateToChildBiomaterial();
@@ -49,49 +49,49 @@ describe('test suite', () => {
         await BiomaterialNew.navigateToStudyFromTopLeftNav();
         await BiomaterialNew.navigateToSubject();
         await BiomaterialNew.navigateToBioMaterialFromSubject(Data.newBiomaterialName, Data.newChildBiomaterialName);
-        await BiomaterialNew.createNewBioMaterialFromBiomaterialTab(Data.newChildBiomaterialName2, Data.newchildBiomaterialCode2);
+        await BiomaterialNew.createNewBioMaterialFromBiomaterialTab(Data.newChildBiomaterialName, Data.newchildBiomaterialCode);
     });
 
-    it('Edit Biomaterial from its own page', async () => {
+    it('06-Edit Biomaterial from its own page', async () => {
         await HomePage.navigateToBiomaterial();
         await BiomaterialSearch.searchBiomaterialWithStudyCode(Data.studyCode);
         await BiomaterialSearch.openBiomaterial(Data.newBiomaterialName);
         await BiomaterialSearch.editBiomaterial(Data.newBiomaterialName);
     });
 
-    it('Users can delete biomaterial records', async () => {
+    it('02-Users can delete biomaterial records', async () => {
         await HomePage.navigateToBiomaterial();
         await BiomaterialSearch.searchBiomaterialWithStudyCode(Data.studyCode);
         await BiomaterialSearch.openBiomaterial(Data.updateBiomaterialName);
         await BiomaterialSearch.deleteBiomaterial(Data.updateBiomaterialName);
     });
 
-    it('Storage: Change Facility', async () => {
+    it('07-Storage: Change Facility', async () => {
         await HomePage.navigateToStorage();
         await Storage.changeStorage(Data.storage1, Data.storage1Units);
     });
     
-    it('Storage: inaccessible', async () => {
+    it('07-Storage: inaccessible', async () => {
         await HomePage.navigateToStorage();
         await Storage.validateStorageInaccessible(Data.storage2);
     });
 
-    it('Subject Search', async () => {
+    it('08-Subject Search', async () => {
         await HomePage.navigateToSubject();
         await Subjects.searchSubjects(Data.searchSubjectData);
     });
 
-    it('Subject Search - List opening on double click on fields in Subject', async () => {
+    it('08-Subject Search - List opening on double click on fields in Subject', async () => {
         await HomePage.navigateToSubject();
         await Subjects.validateListOpeningOnDoubleClick();
     });
 
-    it('Cascade Delete – Subject', async () => {
+    it('09-Cascade Delete - Subject', async () => {
         await HomePage.navigateToSubject();
         await Subjects.deletingTheSubjectWithSubjectCode(Data.subjectCode, Data.deletStudyCode, Data.password);
     });
 
-    it.only('Labmatrix has a general home page ', async () => {
+    it.only('10-Labmatrix has a general home page ', async () => {
         await homePage.validateLabmatrixUserManuallink();
         await homePage.validateBiofortisForumlink();
         await homePage.validateTermsofUselink();

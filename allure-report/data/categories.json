@@ -1,0 +1,51 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "unable to enter Field Name",
+      "children" : [ {
+        "name" : "02-Form Management Audit Data - Create new",
+        "uid" : "e913a82d8163c601",
+        "parentUid" : "a71add0b71b27fc395b4ead5ad488277",
+        "status" : "broken",
+        "time" : {
+          "start" : 1647705220176,
+          "stop" : 1647705348229,
+          "duration" : 128053
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 1,
+        "retriesStatusChange" : false,
+        "parameters" : [ "chrome-99.0.4844.74" ]
+      } ],
+      "uid" : "a71add0b71b27fc395b4ead5ad488277"
+    }, {
+      "name" : "unable to click First Field",
+      "children" : [ {
+        "name" : "02-Form Management Audit Data - Edit",
+        "uid" : "af784ba36e076205",
+        "parentUid" : "148d8c8410e311184307bb366148a3e6",
+        "status" : "broken",
+        "time" : {
+          "start" : 1647707400580,
+          "stop" : 1647707460350,
+          "duration" : 59770
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 1,
+        "retriesStatusChange" : true,
+        "parameters" : [ "chrome-99.0.4844.74" ]
+      } ],
+      "uid" : "148d8c8410e311184307bb366148a3e6"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ]
+}

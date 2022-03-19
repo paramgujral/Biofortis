@@ -1,0 +1,238 @@
+{
+  "uid" : "af784ba36e076205",
+  "name" : "02-Form Management Audit Data - Edit",
+  "fullName" : "test suite.02-Form Management Audit Data - Edit",
+  "historyId" : "ea395c0ac03ab839167ce06845a1edeb",
+  "time" : {
+    "start" : 1647707400580,
+    "stop" : 1647707460350,
+    "duration" : 59770
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "broken",
+  "statusMessage" : "unable to click First Field",
+  "statusTrace" : "AssertionError: unable to click First Field\n                    at actions.click (C:\\Users\\paramjeet.gujral\\Documents\\WDIO-Automation Framework\\actions\\actions.js:121:26)\n                    at async AdministrationPage.updateForm (C:\\Users\\paramjeet.gujral\\Documents\\WDIO-Automation Framework\\test\\pageobjects\\adminstration.page.js:91:9)\n                    at async Context.<anonymous> (C:\\Users\\paramjeet.gujral\\Documents\\WDIO-Automation Framework\\test\\specs\\test suite.js:35:9)",
+  "flaky" : false,
+  "newFailed" : false,
+  "newBroken" : false,
+  "newPassed" : false,
+  "retriesCount" : 1,
+  "retriesStatusChange" : true,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "unable to click First Field",
+    "statusTrace" : "AssertionError: unable to click First Field\n                    at actions.click (C:\\Users\\paramjeet.gujral\\Documents\\WDIO-Automation Framework\\actions\\actions.js:121:26)\n                    at async AdministrationPage.updateForm (C:\\Users\\paramjeet.gujral\\Documents\\WDIO-Automation Framework\\test\\pageobjects\\adminstration.page.js:91:9)\n                    at async Context.<anonymous> (C:\\Users\\paramjeet.gujral\\Documents\\WDIO-Automation Framework\\test\\specs\\test suite.js:35:9)",
+    "steps" : [ {
+      "name" : "able to enter Paramjeet into the field User Name",
+      "time" : {
+        "start" : 1647707402480,
+        "stop" : 1647707402480,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to enter Bio123@@ into the field Password",
+      "time" : {
+        "start" : 1647707404583,
+        "stop" : 1647707404583,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Checkbox - Session Termination",
+      "time" : {
+        "start" : 1647707406686,
+        "stop" : 1647707406686,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Log in",
+      "time" : {
+        "start" : 1647707410050,
+        "stop" : 1647707410050,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Account Link",
+      "time" : {
+        "start" : 1647707425146,
+        "stop" : 1647707425146,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Administration",
+      "time" : {
+        "start" : 1647707427291,
+        "stop" : 1647707427291,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Form from left navigation",
+      "time" : {
+        "start" : 1647707437882,
+        "stop" : 1647707437882,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to enter Test Automation Form into the field Search form name",
+      "time" : {
+        "start" : 1647707440050,
+        "stop" : 1647707440050,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "able to click Matched form",
+      "time" : {
+        "start" : 1647707443284,
+        "stop" : 1647707443284,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "unable to click First Field as the element not displayed",
+      "time" : {
+        "start" : 1647707460347,
+        "stop" : 1647707460347,
+        "duration" : 0
+      },
+      "status" : "failed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true,
+    "stepsCount" : 10
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "wdio"
+  }, {
+    "name" : "language",
+    "value" : "javascript"
+  }, {
+    "name" : "thread",
+    "value" : "0-0"
+  }, {
+    "name" : "suite",
+    "value" : "test suite"
+  }, {
+    "name" : "testClass",
+    "value" : "test suite"
+  }, {
+    "name" : "testMethod",
+    "value" : "02-Form Management Audit Data - Edit"
+  }, {
+    "name" : "package",
+    "value" : "test suite"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "chrome-99.0.4844.74"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "d69ab40f3484e25d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1647705389962,
+        "stop" : 1647705454969,
+        "duration" : 65007
+      }
+    } ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "af784ba36e076205.json",
+  "parameterValues" : [ "chrome-99.0.4844.74" ]
+}
