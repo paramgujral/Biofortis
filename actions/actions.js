@@ -25,10 +25,78 @@ class actions {
         await browser.pause(15000); //XXX
         await browser.switchToFrame(index);
         }
+      
+    async switchToParent(){
+        await browser.pause(3000); //XXX
+        await browser.switchToFrame(null);
+        }
 
     async switchToWindowWithTitle(title){
+        await browser.pause(3000);
         await browser.switchWindow(title);
     }
+
+    async closeWindow(title){
+        await browser.pause(2000);
+        await browser.closeWindow(title);
+    }
+
+    async clickEnter(){
+        await browser.pause(2000);
+        await browser.keys("\uE007");
+    }
+
+    async getScreenshot(){
+        await browser.takeScreenshot(); 
+       }
+
+    async assertTextPresentOnElement(elem , text){
+        try {
+            await elem.waitForDisplayed({timeout : WAIT_FOR_TIMEOUT})
+            await expect(elem).toHaveTextContaining(text)
+            allureReporter.addStep('Verified that '+text+' successfully ', this.getScreenshot() ,'passed');
+        } catch (Error) {
+            allureReporter.addStep(text+' not present ', this.getScreenshot() ,'failed');
+        }
+    }
+
+    async assertElement(elem, logname) {
+        try {
+            var isDisplayed = await elem.isDisplayed();
+            allureReporter.addStep('expected '+logname+" is displayed","attachment", "passed");
+            return isDisplayed           
+        } catch (error) {
+            allureReporter.addStep('expected '+logname+" is not displayed","attachment", "failed");
+        }
+    }
+
+    async expectToHaveTitle(title){
+        try {
+            await expect(browser).toHaveTitle(title);
+            allureReporter.addStep('Validated that '+title+' is successfully displayed', this.getScreenshot(),'passed');
+        } catch (Error) {
+            allureReporter.addStep('Expected page '+title+' is not displayed', this.getScreenshot(), 'failed');
+        }
+    }
+
+    async Switchtonext() {
+        await browser.pause(10000)
+        await browser.switchToWindow(await browser.getWindowHandles()[1])
+        allureReporter.addStep("switched to next window", 'attachemnt', 'passed')
+    }
+
+    async Switchtonexttonext() {
+        await browser.pause(10000)
+        await browser.switchToWindow(await browser.getWindowHandles()[2])
+        allureReporter.addStep("switched to next window", 'attachemnt', 'passed')
+    }
+
+    async switchToParent(wid) {
+        await browser.switchToWindow(wid)
+        allureReporter.addStep("switched back to parent window", 'attachemnt', 'passed')
+    }
+
+    
 
    async clear(locator, logname) {
         try {

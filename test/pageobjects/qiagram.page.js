@@ -44,7 +44,7 @@ class QiagramPage extends Page{
         await CommonActions.switchToIFrame(IFRAMEINDEX);
         await CommonActions.click(this.menuManage, "Manage");
         await CommonActions.switchToWindowWithTitle(TITLELABMATRIXMANAGEMENT);
-        await browser.pause(10000);
+        await browser.pause(15000);
     }
 
     async searchDatasource(datasource, datasourceType, searchWithBlank) {
@@ -75,18 +75,6 @@ class QiagramPage extends Page{
         }
 
         await browser.pause(5000);
-        // for (let i=0; i<=this.pageNumber.length; i++){
-        //     countSnapshot += await datasourceTypeSnapshot.length;
-        //     countSystem += await datasourceTypeSystem.length;
-        //     countForm += await datasourceTypeForm.length;
-        //     countQuery += await datasourceTypeQuery.length;
-        //     countImported += await datasourceTypeImported.length;
-        //     countFlatFile += await datasourceTypeFaltFile.length;
-        //     if (await (this.nextPageArrow).isDisplayed()){
-        //         await CommonActions.click(this.nextPageArrow, "Pagination Next Page");
-        //     } 
-        // }
-
         do {
             countSnapshot  += await  this.datasourceTypeSnapshot.length;
             countSystem  += await  this.datasourceTypeSystem.length;
@@ -103,16 +91,6 @@ class QiagramPage extends Page{
         ", Form Count: "+countForm+ ", Query Count: "+countQuery+ ", Imported Count: "+countImported+ 
         ", Flat File Count: " +countFlatFile+ ", Staging Count: "+countStaging+
         ", Stored Query Result Count: "+countStoredQueryResult, 'attachment', 'passed')
-
-        // let datasourceTypeCounter=0;
-        // for (const [key, value] of Object.entries(datasourceCount)) {
-        //     if(value===0){
-        //         datasourceTypeCounter += await 1;
-        //     }
-        //   }
-        // if(datasourceTypeCounter<4){
-        //     allureReporter.addStep('WARNING!!! types of datasource  in search are very less.', 'attachment', 'broken')
-        // }
 
     }
 

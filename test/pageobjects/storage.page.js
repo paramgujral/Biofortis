@@ -22,10 +22,11 @@ class StoragePage extends Page{
         await CommonActions.click(elemStorage, storageName); 
         currentStorage = this.headerStorage.getText();
         allureReporter.addStep('New Storage: '+currentStorage, 'attachment', 'passed');
-        storageunits.forEach(unit => {
-            let elemUnit = $(`//span[text()=${unit}]`);
-            await expect(elemUnit).toBeDisplayed();        
-        });
+        
+        for(const unit of storageunits) {
+            let elemUnit = await $(`//span[text()="${unit}"]`);
+            await expect(elemUnit).toBeDisplayed();
+        }
     }
 
     async validateStorageInaccessible (storageName) {

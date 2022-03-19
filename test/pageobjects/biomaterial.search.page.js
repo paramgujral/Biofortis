@@ -52,42 +52,47 @@ class BiomaterialSearchPage extends Page{
 
     async searchBiomaterialWithStudyCode (studyCode) {
         await CommonActions.sendKeys(this.txtStudyCode, studyCode, "Study Code");
+        await browser.pause(2000);
+        await browser.keys("\uE007");
+        await browser.pause(2000);
         await browser.keys("\uE007");
         await expect(this.searchFormNoRecords).not.toBeDisplayed(); 
-        let elemSearchResultStudy = $$(`//td/div[text()="${studyCode}"]`);
+        let elemSearchResultStudy = $$('//td/div[text()="'+studyCode+'"]');
         await expect(elemSearchResultStudy).toBeDisplayed();
     }
 
     async searchBiomaterialforNotfound (studyCode) {
-        await CommonActions.sendKeys(txtStudyCode, studyCode, "Study Code");
+        await CommonActions.sendKeys(this.txtStudyCode, studyCode, "Study Code");
         await browser.keys("\uE007");
-        let elemSearchResultStudy = $$(`//td/div[text()="${studyCode}"]`);
+        let elemSearchResultStudy = $$('//td/div[text()="'+studyCode+'"]');
         await expect(elemSearchResultStudy).not.toBeDisplayed();
     }
 
     async openBiomaterial(biomaterialName){
-        let elemSearchResultBiomaterial = $(`="${biomaterialName}"]`);
+        let elemSearchResultBiomaterial = $('//td/div/a[text()="'+biomaterialName+'"]');
         await CommonActions.click(elemSearchResultBiomaterial, "Biomaterial");
-        let elemHeaderBiomaterial = $(`//div[@class="c-header-text" and text()="${biomaterialName}"]`);
+        let elemHeaderBiomaterial = $('//div[@class="c-header-text" and text()="'+biomaterialName+'"]');
         await expect(elemHeaderBiomaterial).toBeDisplayed();
     }
 
     async editBiomaterial(biomaterialName){
         await CommonActions.click(this.btnEditBiomaterial, "Edit");
-        let updatedName=biomaterialName+" updated";
+        let updatedName = await biomaterialName+" updated";
         await CommonActions.sendKeys(this.txtNameBiomaterial, updatedName, "Biomaterial Name");
         await CommonActions.click(this.btnSaveBiomaterial, "Save");
-        await expect(txtNameBiomaterial).toHaveAttribute('text', updatedName);
+        let elemBiomaterialName = $('//div/div[text()="'+updatedName+'"]');
+        await expect(elemBiomaterialName).toBeDisplayed();
     }
 
     async deleteBiomaterial(biomaterialName){
-        await CommonActions.click(this.deleteBiomaterial, "Delete Biomaterial");
+        await CommonActions.click(this.btnDeleteBioMaterial, "Delete Biomaterial");
+        await browser.pause(2000);
         await expect(this.confirmDeleteMessage).toBeDisplayed();
         await expect(this.confirmDeleteChild).toBeDisplayed();
         await CommonActions.sendKeys(this.confirmDeletePassword, Data.password, "Password");
         await CommonActions.click(this.btnDeleteRecord, "Delete Record");
-        let elemDeletedBiomaterialName = $(`//b[@text=${biomaterialName}]`);
-        if(elemDeletedBiomaterialName.isDisplayed() && successfullyMessageDeleted.isDisplayed()){
+        let elemDeletedBiomaterialName = $('//b[@text="'+biomaterialName+'"}]');
+        if(elemDeletedBiomaterialName.isDisplayed() && this.successfullyMessageDeleted.isDisplayed()){
             allureReporter.addStep(biomaterialName+" Deleted Sucessfully", 'attachment', 'passed');
         }
     

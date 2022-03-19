@@ -13,6 +13,7 @@ module.exports = {
     newBiomaterialCode2: 'TA1234II',
     newChildBiomaterialName: 'Test Automation Biomaterial - Child',
     newchildBiomaterialCode: 'ChildTA1234',
+    updateBiomaterialName: 'Test Automation Biomaterial updated',
     FormFields: {
        Fields: [
             {
@@ -29,42 +30,60 @@ module.exports = {
             },
         ]
     },
-    validateFormAuditTrail:{
-        //'Paramjeet Gujral (Paramjeet) created Form (ID=246) on': '3/18/2022 6:31:18 PM',
-        'Allow Edit without Parent Edit Permissions': 'set to "No"',
-        'Allow manual entry of External ID/Source': 'set to "No"',
-        'Allow records to be locked': ' set to "No"',
-        'Collect changed from': ' "One Record" to "Many Records"',
-        'Create Qiagram Datasource': ' set to "Yes"',
-        'Display Column Number': ' set to "2"',
-        'Display For New Records': ' set to "No"',
-        'Make Available in Data Entry': ' set to "Yes"',
-        'Make Available in Search': ' set to "Yes"',
-        'Name': ' set to "test automation"',
-        'Show Attachments': ' set to "No"',
-        'Added': ' Fields (ID=683).',
-    },
-    validateFormAuditTrailForField:{
-        'Add New Values To List': ' set to "Yes"',
-        'Contains PHI': ' set to "No"',
-        'Decimal Precision': ' set to "10"',
-        'Default to Current Date/Time': ' set to "No"',
-        'External ID': ' set to "field1"',
-        'Is Required': ' set to "No"',
-        'Is Title': ' set to "No"',
-        'Label': ' set to "label1"',
-        'Location': ' set to "In-line"',
-        'Maximum': ' set to "250"',
-        'Name': ' set to "field1"',
-        'Show Help Text': 'set to "as tooltip"',
-        'Type':  'set to "Text"',
-    },
-     
+    storage1: 'R52.CT.02 Facility',
+    storage1Units: [
+        'R52.CT.02 Freezer',
+        'R52.CT.02 Freezer_2'
+    ],
+    storage2: 'DEmo1234321',
     studyforAddingBioMaterial: 'Test Automation',
     studyCode: "Test Automation",
     dataSourceSearch:{
         datasourceName: "Adm.PER.27",
         datasourceType: "Snapshot"
-    }
+    },
+    searchSubjectData:{
+        subjectCode     :   "1234",
+        studyCode       :   "FAST Study",
+        subjectID       :   "15",
+        fullName        :   "test test test",
+        sex             :   "Male",
+        mortalityStatus :   "Dead",
+        barcode         :   "1234"
+    },
+    subjectCode : "Test Automation",
+    deletStudyCode: "Subject123"
    
 }
+
+// validateFormAuditTrail:{
+//     //'Paramjeet Gujral (Paramjeet) created Form (ID=246) on': '3/18/2022 6:31:18 PM',
+//     'Allow Edit without Parent Edit Permissions': 'set to "No"',
+//     'Allow manual entry of External ID/Source': 'set to "No"',
+//     'Allow records to be locked': ' set to "No"',
+//     'Collect changed from': ' "One Record" to "Many Records"',
+//     'Create Qiagram Datasource': ' set to "Yes"',
+//     'Display Column Number': ' set to "2"',
+//     'Display For New Records': ' set to "No"',
+//     'Make Available in Data Entry': ' set to "Yes"',
+//     'Make Available in Search': ' set to "Yes"',
+//     'Name': ' set to "test automation"',
+//     'Show Attachments': ' set to "No"',
+//     'Added': ' Fields (ID=683).',
+// },
+// validateFormAuditTrailForField:{
+//     'Add New Values To List': ' set to "Yes"',
+//     'Contains PHI': ' set to "No"',
+//     'Decimal Precision': ' set to "10"',
+//     'Default to Current Date/Time': ' set to "No"',
+//     'External ID': ' set to "field1"',
+//     'Is Required': ' set to "No"',
+//     'Is Title': ' set to "No"',
+//     'Label': ' set to "label1"',
+//     'Location': ' set to "In-line"',
+//     'Maximum': ' set to "250"',
+//     'Name': ' set to "field1"',
+//     'Show Help Text': 'set to "as tooltip"',
+//     'Type':  'set to "Text"',
+// },
+ 

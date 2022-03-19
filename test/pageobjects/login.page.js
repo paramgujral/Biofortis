@@ -9,6 +9,7 @@ class LoginPage extends Page{
      */
     get inputUsername() {return $('//input[@name="username"]')}
     get inputPassword() { return $('//input[@name="password"]')}
+    get chkbxTerminate() { return $('//input[@type="checkbox"]')}
     get btnSubmit() { return $('#submitButton');}
 
     /**
@@ -20,6 +21,7 @@ class LoginPage extends Page{
         await browser.maximizeWindow();
         await CommonActions.sendKeys(this.inputUsername, username, "User Name");
         await CommonActions.sendKeys(this.inputPassword, password, "Password");
+        await CommonActions.click(this.chkbxTerminate, "Checkbox - Session Termination");
         await CommonActions.click(this.btnSubmit, "Log in");
         await browser.pause(5000);
     }
