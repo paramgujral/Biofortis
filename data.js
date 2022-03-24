@@ -9,8 +9,6 @@ module.exports = {
     updateFieldName: 'Field1 Updated',
     newBiomaterialName: 'Test Automation Biomaterial',
     newBiomaterialCode: 'TA1234',
-    newBiomaterialName: 'Test Automation Biomaterial - 2',
-    newBiomaterialCode: 'TA12345',
     newBiomaterialName2: 'Test Automation Biomaterial - 2',
     newBiomaterialCode2: 'TA1234II',
     newChildBiomaterialName: 'Test Automation Biomaterial - Child',

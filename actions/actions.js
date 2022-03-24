@@ -16,6 +16,15 @@ class actions {
             })
         )}
 
+    async waitFordisplay(elem){
+        await browser.waitUntil(
+            async () => (await elem.isDisplayed(),
+            {
+                timeout: 30000,
+                timeoutMsg: '------------->Element'+elem+'is not displayed'
+            })
+        )}
+
     async getElementID(elem){
         await this.waitForClickable(elem);
         return await elem.getAttribute('id');
@@ -49,6 +58,31 @@ class actions {
     async getScreenshot(){
         await browser.takeScreenshot(); 
        }
+
+    async validateElementIsDispalyed(elem, messageOnPass, messageOnFail){
+        try {
+            if(await elem.isDisplayed()){
+                allureReporter.addStep(messageOnPass, 'attachment' ,'passed');
+            }else{                
+                allureReporter.addStep(messageOnFail, this.getScreenshot() ,'failed');
+            }
+        } catch (error) {
+            allureReporter.addStep(error.message, this.getScreenshot() ,'failed');
+        }
+    }
+
+
+    async validateElementIsNotDispalyed(elem, messageOnPass, messageOnFail){
+        try {
+            if(!(await elem.isDisplayed())){
+                allureReporter.addStep(messageOnPass, 'attachment' ,'passed');
+            }else{                
+                allureReporter.addStep(messageOnFail, this.getScreenshot() ,'failed');
+            }
+        } catch (error) {
+            allureReporter.addStep(error.message, this.getScreenshot() ,'failed');
+        }
+    }
 
     async assertTextPresentOnElement(elem , text){
         try {

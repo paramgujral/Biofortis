@@ -46,7 +46,8 @@ class BiomaterialSearchPage extends Page{
     get viewAuditTrail() {return $('//span[text()="View Audit Trail"]//ancestor::a')};
     get auditTrailEditTimeSpan() {return $('//div[@class="entry-human-readable-timestamp"]')}; //contains MINUTES AGO
     get auditTrailUser() {return $('//span[text()="Paramjeet Gujral (Paramjeet)"]')};
-    get auditTrailEditDateTime() {return $('//span[text()="Paramjeet Gujral (Paramjeet)"]/following-sibling::Span')};
+    get auditTrailEditDateTime() {return $('//span[text()="Paramjeet Gujral (Paramjeet)"]/following-sibling::span')};
+    get closeAuditTrail() {return $('//span[text()="Close"]//ancestor::a')};
 
     /**
      * a method to encapsule automation code to interact with the page
@@ -84,7 +85,7 @@ class BiomaterialSearchPage extends Page{
 
     async editBiomaterial(biomaterialName){
         await CommonActions.click(this.btnEditBiomaterial, "Edit");
-        let updatedName = await biomaterialName+" updated";
+        let updatedName = await biomaterialName+" Updated";
         await CommonActions.sendKeys(this.txtNameBiomaterial, updatedName, "Biomaterial Name");
         await CommonActions.click(this.btnSaveBiomaterial, "Save");
         let elemBiomaterialName = $('//div/div[text()="'+updatedName+'"]');
@@ -120,10 +121,8 @@ class BiomaterialSearchPage extends Page{
         await expect(this.propertiesModifyOn).toBeDisplayed(); 
 
         let URL = await browser.getUrl();
-
-        console.log('@@@@@@@@@@@@@@@@@@@@@@', URL);
         let ID = await this.propertiesIDValue.getText();
-        console.log('@@@@@@@@@@@@@@@@@@@@@@', ID);
+        
         if(URL.toString().indexOf(ID)!=-1){
             allureReporter.addStep(ID +' is the ID in Record Properties', 'attachment', 'passed');
         }else{
@@ -146,7 +145,7 @@ class BiomaterialSearchPage extends Page{
             allureReporter.addStep(userName +' isn\'t the creator and modifier in the Record Properties', 'attachment', 'broken');
         }
 
-        let modifyDate = await Moment(new Date()).format('mm/dd/yyyy');
+        let modifyDate = Moment(new Date()).format('mm/dd/yyyy');
 
         if(CreatedOn.toString().indexOf(modifyDate)!=-1 && ModifyOn.toString().indexOf(modifyDate)!=-1){
             allureReporter.addStep(modifyDate +' is the create and modify Date in the Record Properties', 'attachment', 'passed');
@@ -173,14 +172,17 @@ class BiomaterialSearchPage extends Page{
         })
 
         let humanReadableTimeSpan = await this.propertiesExternalID.getText();
-        // if(humanReadableTimeSpan.toString().indexOf("MINUTES AGO")!=-1){
-        //     allureReporter.addStep(modifyDate +' is the create and modify Date in the Record Properties', 'attachment', 'passed');
-        // }else{
-        //     allureReporter.addStep(modifyDate +' isn\'t the create and modify Date in the Record Properties', 'attachment', 'broken');
-        // }
+        if(humanReadableTimeSpan.toString().indexOf("SECOND AGO")!=-1){
+            allureReporter.addStep(humanReadableTimeSpan +' is recorded in the Audit Trail.', 'attachment', 'passed');
+        }else{
+            allureReporter.addStep(humanReadableTimeSpan +' isn\'t recorded in the Audit Trail.', 'attachment', 'broken');
+        }
 
+        await CommonActions.validateElementIsDispalyed(this.auditTrailUser, 'User name is present in Audit Trail', 'User name isn\'t present in Audit Trail');
+        let modifyDate = Moment(new Date()).format('mm/dd/yyyy');
 
-        
+        await CommonActions.assertTextPresentOnElement(this.auditTrailEditDateTime, modifyDate.toString());
+
         await CommonActions.click(this.closeAuditTrail, "Close Audit Trail");
     }
 }

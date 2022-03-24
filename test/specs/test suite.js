@@ -71,13 +71,15 @@ describe('test suite', () => {
         await BiomaterialNew.validateAuditTrailDataNewBiomaterial(BiomaterialAuditTrailData.addTrailBiomaterial2);
     });
 
-    it.only('06-Edit Biomaterial from its own page', async () => {
+    it('06-Edit Biomaterial from its own page', async () => {
         await HomePage.navigateToBiomaterial();
         await BiomaterialSearch.searchBiomaterialWithStudyCode(Data.studyCode);
         await BiomaterialSearch.openBiomaterial(Data.newBiomaterialName);
         await BiomaterialSearch.editBiomaterial(Data.newBiomaterialName);
         await BiomaterialSearch.navigateToBiomaterialProperty();
         await BiomaterialSearch.verifyPropertiesBiomaterial();
+        await BiomaterialSearch.navigatetoAuditTrailFormProperty();
+        await BiomaterialSearch.validateAuditTrailDataEditBiomaterial(BiomaterialAuditTrailData.editTrailBiomaterial);
 
     });
 
@@ -98,7 +100,7 @@ describe('test suite', () => {
         await Storage.validateStorageInaccessible(Data.storage2);
     });
 
-    it('08-Subject Search', async () => {
+    it.only('08-Subject Search', async () => {
         await HomePage.navigateToSubject();
         await Subjects.searchSubjects(Data.searchSubjectData);
     });
