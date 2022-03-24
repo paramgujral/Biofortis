@@ -21,23 +21,6 @@ exports.config = merge(
     //services:['selenium-standalone'],
     services: ['chromedriver'],
 
-    // services: [
-    //   ['selenium-standalone',
-    //     {
-    //       installArgs: {
-    //         drivers: {
-    //           chrome: { version: chromeDriverVersion },
-    //           firefox: { version: firefoxDriverVersion },
-    //         },
-    //       },
-    //       args: {
-    //         drivers: {
-    //           chrome: { version: chromeDriverVersion },
-    //           firefox: { version: firefoxDriverVersion },
-    //         },
-    //       },
-    //     }],
-    // ],
   },
   { clone: false },
 );

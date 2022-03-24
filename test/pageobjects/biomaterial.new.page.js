@@ -23,11 +23,14 @@ class DataEntryBiomaterialPage extends Page{
      get menuBioMaterial() {return $('//span[text()="Biomaterials"]//ancestor::a')};
      get btnNewChildBiomaterial() {{return $('//span[text()="New Biomaterial"]')}};
      get tabBioMaterials() {return $('//div[@class="x-column-header-text-wrapper"]//span[text()="Biomaterials"]')};
-
      get biomaterial() {return $('//a[text()="Test Automation Biomaterial"]')};
      get childBiomaterialName() {return $('//a[text()="Test Automation Biomaterial - child"]')}
-
      get menuNewBioMaterial() {return $('//span[text()="New Biomaterial"]//ancestor::a')};
+     get childBiomaterialUnderBiomaterial() {return $('//a[text()="Test Automation Biomaterial - Child"]')};
+     get toolbar() {return $('//a[preceding-sibling::a[@data-qtip="Delete this record."]]')};
+     get viewAuditTrail() {return $('//span[text()="View Audit Trail"]//ancestor::a')};
+     get closeAuditTrail() {return $('//span[text()="Close"]//ancestor::a')};
+
      
 
     /**
@@ -80,6 +83,27 @@ class DataEntryBiomaterialPage extends Page{
 
     async validateNoChildForNewlyCreateBiomaterial(){
         //child Biomaterial element not displayed
+        await expect(this.childBiomaterialUnderBiomaterial).not.toBeDisplayed();  
+    }
+
+    async navigateToAuditTrail(){
+        await CommonActions.click(this.toolbar, "Toolbar on right top side");
+        await CommonActions.click(this.viewAuditTrail, "View Audit Trail");
+    }
+    
+    async validateAuditTrailDataNewBiomaterial(auditTrailData){
+        Object.keys(auditTrailData)
+        .forEach(async function eachKey(key) {
+            let auditTrailField;
+            let auditTrailvalue = await auditTrailData[key];
+            if(key=='Added Fields'){
+                auditTrailField = await $('//p[contains(text(),"Added")]//ancestor::li');
+            }else{
+                auditTrailField = await $('//span[text()="'+key+'"]//ancestor::li');
+            }
+            await CommonActions.assertTextPresentOnElement(auditTrailField, auditTrailvalue);
+        })
+        await CommonActions.click(this.closeAuditTrail, "Close Audit Trail");
     }
 
 }

@@ -1,5 +1,7 @@
 const allureReporter = require('@wdio/allure-reporter').default;
 
+const Moment = require('moment');
+
 const Page = require('./page');
 const CommonActions = require('../../actions/actions');
 const Data = require('../../data');
@@ -21,7 +23,6 @@ class BiomaterialSearchPage extends Page{
     get btnDeleteRecord () {return $('//span[text()="Delete Record"]//ancestor::a')};
     get successfullyMessageDeleted () {return $('//div[contains(text(), "deleted.")]')};
     get backToSearch () {return $('//a[text()="Back to Search"]')};
-
     get propertiesID () {return $('//span[text()="ID:"]')};
     get propertiesIDValue () {return $('//span[text()="ID:"]//ancestor::Label/following-sibling::div/div')};
     get propertiesExternalID () {return $('//span[text()="External ID:"]')};
@@ -38,8 +39,14 @@ class BiomaterialSearchPage extends Page{
     get propertiesCreatedOnValue () {return $('//span[text()="Created on:"]//ancestor::Label/following-sibling::div/div')};
     get propertiesModifyBy () {return $('//span[text()="Last Modified by:"]')};
     get propertiesModifyByValue () {return $('//span[text()="Last Modified by:"]//ancestor::Label/following-sibling::div/div')};
-    get propertiesModifyOn () {return $('//span[text()="Last Modified on"]')};
+    get propertiesModifyOn () {return $('//span[text()="Last Modified on:"]')};
     get propertiesModifyOnValue () {return $('//span[text()="Last Modified on:"]//ancestor::Label/following-sibling::div/div')};
+    get linkAccount() {return $('//span[text()="Paramjeet Gujral"]//ancestor::a')};
+    get toolbar() {return $('//a[preceding-sibling::a[@data-qtip="Delete this record."]]')};
+    get viewAuditTrail() {return $('//span[text()="View Audit Trail"]//ancestor::a')};
+    get auditTrailEditTimeSpan() {return $('//div[@class="entry-human-readable-timestamp"]')}; //contains MINUTES AGO
+    get auditTrailUser() {return $('//span[text()="Paramjeet Gujral (Paramjeet)"]')};
+    get auditTrailEditDateTime() {return $('//span[text()="Paramjeet Gujral (Paramjeet)"]/following-sibling::Span')};
 
     /**
      * a method to encapsule automation code to interact with the page
@@ -95,7 +102,10 @@ class BiomaterialSearchPage extends Page{
         if(elemDeletedBiomaterialName.isDisplayed() && this.successfullyMessageDeleted.isDisplayed()){
             allureReporter.addStep(biomaterialName+" Deleted Sucessfully", 'attachment', 'passed');
         }
-    
+    }
+
+    async navigateToBiomaterialProperty(){
+        await CommonActions.click(this.toolbar, "Properties on Biomaterial");
     }
 
     async verifyPropertiesBiomaterial(){
@@ -109,18 +119,39 @@ class BiomaterialSearchPage extends Page{
         await expect(this.propertiesModifyBy).toBeDisplayed(); 
         await expect(this.propertiesModifyOn).toBeDisplayed(); 
 
-        let ID = this.propertiesIDValue.getText();
-        let ExternalID = this.propertiesExternalID.getText();
-        let Source = this.propertiesExternalSourceValue.getText();
-        let Version = this.propertiesExternalVersionValue.getText();
-        let BatchID = this.propertiesBatchIDValue.getText();
-        let CreatedBy = this.propertiesCreatedByValue.getText();
-        let CreatedOn = this.propertiesCreatedOnValue.getText();
-        let ModifyBy = this.propertiesModifyByValue.getText();
-        let ModifyOn = this.propertiesModifyOnValue.getText();
+        let URL = await browser.getUrl();
 
-        if(ID.isEmpty() || CreatedBy.isEmpty() || CreatedOn.isEmpty() || ModifyBy.isEmpty() || ModifyOn.isEmpty()){
-            allureReporter.addStep('WARNING!!! critical informations are missing in Record Properties.', 'attachment', 'broken');
+        console.log('@@@@@@@@@@@@@@@@@@@@@@', URL);
+        let ID = await this.propertiesIDValue.getText();
+        console.log('@@@@@@@@@@@@@@@@@@@@@@', ID);
+        if(URL.toString().indexOf(ID)!=-1){
+            allureReporter.addStep(ID +' is the ID in Record Properties', 'attachment', 'passed');
+        }else{
+            allureReporter.addStep(ID + ' isn\'t the ID in Record Properties', 'attachment', 'broken');
+        }
+
+        let ExternalID = await this.propertiesExternalID.getText();
+        let Source = await this.propertiesExternalSourceValue.getText();
+        let Version = await this.propertiesExternalVersionValue.getText();
+        let BatchID = await this.propertiesBatchIDValue.getText();
+        let CreatedBy = await this.propertiesCreatedByValue.getText();
+        let CreatedOn = await this.propertiesCreatedOnValue.getText();
+        let ModifyBy = await this.propertiesModifyByValue.getText();
+        let ModifyOn = await this.propertiesModifyOnValue.getText();
+        let userName = await this.linkAccount.getText();
+
+        if(CreatedBy.toString().indexOf(userName)!=-1 && ModifyBy.toString().indexOf(userName)!=-1){
+            allureReporter.addStep(userName +' is the creator and modifier in the Record Properties', 'attachment', 'passed');
+        }else{
+            allureReporter.addStep(userName +' isn\'t the creator and modifier in the Record Properties', 'attachment', 'broken');
+        }
+
+        let modifyDate = await Moment(new Date()).format('mm/dd/yyyy');
+
+        if(CreatedOn.toString().indexOf(modifyDate)!=-1 && ModifyOn.toString().indexOf(modifyDate)!=-1){
+            allureReporter.addStep(modifyDate +' is the create and modify Date in the Record Properties', 'attachment', 'passed');
+        }else{
+            allureReporter.addStep(modifyDate +' isn\'t the create and modify Date in the Record Properties', 'attachment', 'broken');
         }
 
         allureReporter.addStep("External ID: "+ExternalID+ ", Source Value: "+Source+ ", Version: "+Version+ ", BatchID "+BatchID+ 
@@ -128,6 +159,30 @@ class BiomaterialSearchPage extends Page{
          'attachment', 'passed')
     }
 
+    async navigatetoAuditTrailFormProperty(){
+        await CommonActions.click(this.viewAuditTrail, "View Audit Trail");
+    } 
+
+
+    async validateAuditTrailDataEditBiomaterial(auditTrailData){
+        Object.keys(auditTrailData)
+        .forEach(async function eachKey(key) {
+            let auditTrailvalue = await auditTrailData[key];
+            let auditTrailField = await $('//span[text()="'+key+'"]//ancestor::li');
+            await CommonActions.assertTextPresentOnElement(auditTrailField, auditTrailvalue);
+        })
+
+        let humanReadableTimeSpan = await this.propertiesExternalID.getText();
+        // if(humanReadableTimeSpan.toString().indexOf("MINUTES AGO")!=-1){
+        //     allureReporter.addStep(modifyDate +' is the create and modify Date in the Record Properties', 'attachment', 'passed');
+        // }else{
+        //     allureReporter.addStep(modifyDate +' isn\'t the create and modify Date in the Record Properties', 'attachment', 'broken');
+        // }
+
+
+        
+        await CommonActions.click(this.closeAuditTrail, "Close Audit Trail");
+    }
 }
 
 module.exports = new BiomaterialSearchPage();

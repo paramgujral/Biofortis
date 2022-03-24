@@ -1,6 +1,8 @@
 const Data = require('../../data');
 
-const CommonActions = require('../../actions/actions');
+const FormAuditTrailData = require('../../audittrail.form');
+const BiomaterialAuditTrailData = require('../../audittrail.biomaterial');
+
 const LoginPage = require('../pageobjects/login.page');
 const HomePage = require('../pageobjects/home.page');
 const QiagramPage = require('../pageobjects/qiagram.page');
@@ -9,7 +11,7 @@ const BiomaterialNew = require('../pageobjects/biomaterial.new.page');
 const BiomaterialSearch = require('../pageobjects/biomaterial.search.page');
 const Storage = require('../pageobjects/storage.page');
 const Subjects = require('../pageobjects/subjects.page');
-const homePage = require('../pageobjects/home.page');
+
 
 
 describe('test suite', () => {
@@ -24,15 +26,25 @@ describe('test suite', () => {
         await QiagramPage.validateDatasourceSearchWithBlankSearchString();
     });
 
-    it('03-Form Management Audit Data - Create new', async () => {
+    it('03-Form Management - Create new', async () => {
         await HomePage.navigateToAdministration();
-        await AdminPage.createNewForm(Data.newFormOption, Data.newFormName);
-        await AdminPage.addFields();
+        await AdminPage.createNewForm(Data.newFormOption, Data.newFormName, Data.FormFields.Fields);
     });
+
+    it('03-Form Management Audit Trail for new form', async () => {
+        await AdminPage.navigateToAuditTrail();
+        await AdminPage.validateAuditTrailDataNewForm(FormAuditTrailData.addTrail);
+    });
+
 
     it('03-Form Management Audit Data - Edit', async () => {
         await HomePage.navigateToAdministration();
         await AdminPage.updateForm(Data.newFormName, Data.FormFields.Fields[1].name, Data.updateFieldName)
+    });
+
+    it('03-Form Management Audit Data for edit Form', async () => {
+        await AdminPage.navigateToAuditTrail();
+        await AdminPage.validateAuditTrailDataEditForm(FormAuditTrailData.updateTrail);
     });
 
     it('04-History is not available for deleted records', async () => {
@@ -43,20 +55,30 @@ describe('test suite', () => {
     it('05-Create Biomaterial from multiple locations', async () => {
         await HomePage.navigateToCreateBiomaterialFromDataEntry(Data.studyCode);
         await BiomaterialNew.createBiomaterial(Data.newBiomaterialName, Data.newBiomaterialCode);
+        await BiomaterialNew.navigateToAuditTrail();
+        await BiomaterialNew.validateAuditTrailDataNewBiomaterial(BiomaterialAuditTrailData.addTrailBiomaterial);
         await BiomaterialNew.navigateToChildBiomaterial();
+        await BiomaterialNew.validateNoChildForNewlyCreateBiomaterial();
         await BiomaterialNew.navigateToBiomaterialFromChildBiomaterial();
         await BiomaterialNew.createBiomaterial(Data.newChildBiomaterialName, Data.newchildBiomaterialCode);
+        await BiomaterialNew.navigateToAuditTrail();
+        await BiomaterialNew.validateAuditTrailDataNewBiomaterial(BiomaterialAuditTrailData.addTrailChildBiomaterial);
         await BiomaterialNew.navigateToStudyFromTopLeftNav();
         await BiomaterialNew.navigateToSubject();
         await BiomaterialNew.navigateToBioMaterialFromSubject(Data.newBiomaterialName, Data.newChildBiomaterialName);
-        await BiomaterialNew.createNewBioMaterialFromBiomaterialTab(Data.newChildBiomaterialName, Data.newchildBiomaterialCode);
+        await BiomaterialNew.createNewBioMaterialFromBiomaterialTab(Data.newBiomaterialName2, Data.newBiomaterialCode2);
+        await BiomaterialNew.navigateToAuditTrail();
+        await BiomaterialNew.validateAuditTrailDataNewBiomaterial(BiomaterialAuditTrailData.addTrailBiomaterial2);
     });
 
-    it('06-Edit Biomaterial from its own page', async () => {
+    it.only('06-Edit Biomaterial from its own page', async () => {
         await HomePage.navigateToBiomaterial();
         await BiomaterialSearch.searchBiomaterialWithStudyCode(Data.studyCode);
         await BiomaterialSearch.openBiomaterial(Data.newBiomaterialName);
         await BiomaterialSearch.editBiomaterial(Data.newBiomaterialName);
+        await BiomaterialSearch.navigateToBiomaterialProperty();
+        await BiomaterialSearch.verifyPropertiesBiomaterial();
+
     });
 
     it('02-Users can delete biomaterial records', async () => {
@@ -81,7 +103,7 @@ describe('test suite', () => {
         await Subjects.searchSubjects(Data.searchSubjectData);
     });
 
-    it('08-Subject Search - List opening on double click on fields in Subject', async () => {
+    it('08-Subject Search - List opening on double click', async () => {
         await HomePage.navigateToSubject();
         await Subjects.validateListOpeningOnDoubleClick();
     });
@@ -91,10 +113,10 @@ describe('test suite', () => {
         await Subjects.deletingTheSubjectWithSubjectCode(Data.subjectCode, Data.deletStudyCode, Data.password);
     });
 
-    it.only('10-Labmatrix has a general home page ', async () => {
-        await homePage.validateLabmatrixUserManuallink();
-        await homePage.validateBiofortisForumlink();
-        await homePage.validateTermsofUselink();
+    it('10-Labmatrix has a general home page ', async () => {
+        await HomePage.validateLabmatrixUserManuallink();
+        await HomePage.validateBiofortisForumlink();
+        await HomePage.validateTermsofUselink();
     });
     
 });

@@ -31,20 +31,20 @@ class AdministrationPage extends Page{
     //get firstField() {return $('=Field1')};
     get btnformUpdate() {return $('//span[text()="Update "]//ancestor::a')};
     get btnformDelete() {return $('//span[text()="Delete"]//ancestor::a')};
-
     get popupConfirmDeleteFormYes() {return $('//span[text()="Yes"]//ancestor::a')};
-
     get confirmDeleteFormpassword() {return $('//input[@type="password"]')};
-
     get deleteRecord() {return $('//span[text()="Delete Record"]//ancestor::a')};
 
+    get toolbar() {return $('//a[preceding-sibling::a[@data-qtip="Delete this form."]]')};
+    get viewAuditTrail() {return $('//span[text()="View Audit Trail"]//ancestor::a')};
+    get closeAuditTrail() {return $('//span[text()="Close"]//ancestor::a')};
     
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
      */
 
-    async createNewForm(option, formName){
+    async createNewForm(option, formName, fieldsdata){
         await CommonActions.click(this.leftnavForm, "Form from left navigation");
         await CommonActions.click(this.btnNewForm, "New Form");
         let formOption = $(`//div[@title="${option}"]`)
@@ -52,17 +52,16 @@ class AdministrationPage extends Page{
         await CommonActions.sendKeys(this.newFormName, formName, "New Form Name"); 
         await CommonActions.click(this.btndefineFields, "Define Fields");
         await expect(this.pageTitleNewForm).toBeDisplayed();
-        await this.addFields();
+        await this.addFields(fieldsdata);
         await CommonActions.click(this.btnSaveForm, "Save Form");
 
     }
 
-    async addFields(){
-        let fieldsdata = Data.FormFields.Fields;
+    async addFields(fieldsdata){
         CommonActions.click(this.btnAddField, "Add Field");
         for(const data of fieldsdata) {
             await CommonActions.sendKeys(this.newFieldName, data.name, "Field Name");
-            await browser.pause(20000);
+            //await browser.pause(20000);
             await CommonActions.sendKeys(this.newFieldLable, data.lable, "Field Lable");
             await CommonActions.click(this.newFieldDatatype, "Field Data type");
             let elemDataType = await $(`//td/div[text()="${data.dataType}"]`); 
@@ -83,7 +82,7 @@ class AdministrationPage extends Page{
         await expect(this.searchFormNoRecords).not.toBeDisplayed(); 
     }
 
-    async updateForm(formName,fieldName, updatedFiedlName){
+    async updateForm(formName,fieldName,updatedFiedlName){
         await this.searchForm(formName);
         let elemFormMatcherRecord = await $('//a[text()="'+formName+'"]');
         await CommonActions.click(elemFormMatcherRecord, "Matched form");
@@ -105,7 +104,41 @@ class AdministrationPage extends Page{
         await CommonActions.click(this.deleteRecord, "Delete Record");
         await expect(this.searchFormNoRecords).toBeDisplayed(); 
     }
+
+    async navigateToAuditTrail(){
+        await CommonActions.click(this.toolbar, "Toolbar on right top side");
+        await CommonActions.click(this.viewAuditTrail, "View Audit Trail");
+    }
     
+    async validateAuditTrailDataNewForm(auditTrailData){
+        Object.keys(auditTrailData)
+        .forEach(async function eachKey(key) {
+            let auditTrailField;
+            let auditTrailvalue = await auditTrailData[key];
+            if(key=='Added Fields'){
+                auditTrailField = await $('//p[contains(text(),"Added")]//ancestor::li');
+            }else{
+                auditTrailField = await $('//span[text()="'+key+'"]//ancestor::li');
+            }
+            await CommonActions.assertTextPresentOnElement(auditTrailField, auditTrailvalue);
+        })
+        await CommonActions.click(this.closeAuditTrail, "Close Audit Trail");
+    }
+
+    async validateAuditTrailDataEditForm(auditTrailData){
+        Object.keys(auditTrailData)
+        .forEach(async function eachKey(key) {
+            let auditTrailField;
+            let auditTrailvalue = await auditTrailData[key];
+            if(key=='Updated Fields'){
+                auditTrailField = await $('//p[contains(text(),"Updated")]//ancestor::li');
+            }else{
+                auditTrailField = await $('//span[text()="'+key+'"]//ancestor::li');
+            }
+            await CommonActions.assertTextPresentOnElement(auditTrailField, auditTrailvalue);
+        })
+        await CommonActions.click(this.closeAuditTrail, "Close Audit Trail");
+    }
 }
 
-module.exports = new AdministrationPage();
+module.exports = new AdministrationPage(this.toolbar, "");
