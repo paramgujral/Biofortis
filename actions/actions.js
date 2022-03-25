@@ -59,6 +59,23 @@ class actions {
         await browser.takeScreenshot(); 
        }
 
+
+    async validateText(elem, text){
+    try {
+        await elem.waitForDisplayed({timeout : this.shortDynamicWait()})
+        let actualText = await elem.getText();
+        console.log('@@@@@@@@@@@@@@@@@@@@@@@@Actual',actualText);
+        console.log('@@@@@@@@@@@@@@@@@@@@@@@@Expected',text);
+        if(actualText.indexOf(text)!=-1){
+            allureReporter.addStep('Verified that '+text+' successfully ', this.getScreenshot() ,'passed');
+        }else{
+            allureReporter.addStep(text+' not present ', this.getScreenshot() ,'failed');
+        }
+    } catch (Error) {
+        console.log(Error.message);
+    }
+    }
+
     async validateElementIsDispalyed(elem, messageOnPass, messageOnFail){
         try {
             if(await elem.isDisplayed()){
@@ -68,6 +85,16 @@ class actions {
             }
         } catch (error) {
             allureReporter.addStep(error.message, this.getScreenshot() ,'failed');
+        }
+    }
+
+    async addStepInReport(status, reportMessage){
+        if (status=='pass'){
+            allureReporter.addStep(reportMessage, 'attachment' ,'passed');
+        }else if(status=='fail'){
+            allureReporter.addStep(reportMessage, 'attachment' ,'falied');
+        }else if(status=='broken'){
+            allureReporter.addStep(reportMessage, 'attachment' ,'broken');
         }
     }
 
@@ -86,7 +113,7 @@ class actions {
 
     async assertTextPresentOnElement(elem , text){
         try {
-            await elem.waitForDisplayed({timeout : WAIT_FOR_TIMEOUT})
+            await elem.waitForDisplayed({timeout : this.shortDynamicWait()})
             await expect(elem).toHaveTextContaining(text)
             allureReporter.addStep('Verified that '+text+' successfully ', this.getScreenshot() ,'passed');
         } catch (Error) {

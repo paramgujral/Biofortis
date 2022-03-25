@@ -1,6 +1,7 @@
 const Page = require('./page');
 const CommonActions = require('../../actions/actions');
 const Data = require('../../data');
+const AllureReporter = require('mocha-allure-reporter');
 
 class AdministrationPage extends Page{
     /**
@@ -54,7 +55,11 @@ class AdministrationPage extends Page{
         await expect(this.pageTitleNewForm).toBeDisplayed();
         await this.addFields(fieldsdata);
         await CommonActions.click(this.btnSaveForm, "Save Form");
-
+        if (this.closeAuditTrail.isDisplayed()){
+            let message = await `${formName} is already present!`;
+            await CommonActions.addStepInReport("broken", message);
+            await CommonActions.click(this.closeAuditTrail, "Close error popup saying form is already available")
+        }
     }
 
     async addFields(fieldsdata){
@@ -75,18 +80,19 @@ class AdministrationPage extends Page{
         
     }
 
-    async searchForm(formName){
+    async searchAndOpenForm(formName){
         await CommonActions.click(this.leftnavForm, "Form from left navigation");
         await CommonActions.sendKeys(this.txtSearchForm, formName, "Search form name");
         await browser.keys("\uE007");
         await expect(this.searchFormNoRecords).not.toBeDisplayed(); 
+        let elemFormMatcherRecord = await $('//a[text()="'+formName+'"]');
+        await CommonActions.click(elemFormMatcherRecord, "Matched form");
     }
 
     async updateForm(formName,fieldName,updatedFiedlName){
-        await this.searchForm(formName);
-        let elemFormMatcherRecord = await $('//a[text()="'+formName+'"]');
-        await CommonActions.click(elemFormMatcherRecord, "Matched form");
-        let elemFieldName = await $('//div[text()="'+fieldName+'"]');
+        await this.searchAndOpenForm(formName);
+        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@', fieldName);
+        let elemFieldName = await $('//div[contains(text(),"'+fieldName+'")]');
         await CommonActions.click(elemFieldName, "First Field");
         await CommonActions.sendKeys(this.newFieldName, updatedFiedlName, "Udpate Lable Name");
         await CommonActions.click(this.btnformUpdate, "Udpate Button");
@@ -108,20 +114,25 @@ class AdministrationPage extends Page{
     async navigateToAuditTrail(){
         await CommonActions.click(this.toolbar, "Toolbar on right top side");
         await CommonActions.click(this.viewAuditTrail, "View Audit Trail");
+        await browser.pause(5000);
     }
     
-    async validateAuditTrailDataNewForm(auditTrailData){
-        Object.keys(auditTrailData)
-        .forEach(async function eachKey(key) {
+    async validateAuditTrailDataForm(auditTrailData){
+        // Object.keys(auditTrailData)
+        // .forEach(async function eachKey(key) {
+        for (const [key, value] of Object.entries(auditTrailData)) {
             let auditTrailField;
-            let auditTrailvalue = await auditTrailData[key];
+            // let auditTrailvalue = await value;
             if(key=='Added Fields'){
-                auditTrailField = await $('//p[contains(text(),"Added")]//ancestor::li');
-            }else{
-                auditTrailField = await $('//span[text()="'+key+'"]//ancestor::li');
+                auditTrailField = await $('//p[contains(text(),"Added")]//parent::li');
+            }else if(key=='Updated Fields'){
+                auditTrailField = await $('//p[contains(text(),"Updated")]//ancestor::li');
             }
-            await CommonActions.assertTextPresentOnElement(auditTrailField, auditTrailvalue);
-        })
+            else{
+                auditTrailField = await $('//span[text()="'+key+'"]//parent::li');
+            }
+            await CommonActions.validateText(auditTrailField, value);
+        }
         await CommonActions.click(this.closeAuditTrail, "Close Audit Trail");
     }
 

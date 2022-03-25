@@ -1,4 +1,6 @@
 var allure = require('allure-commandline');
+const allureReporter = require('@wdio/allure-reporter').default
+var fs = require('fs');
 
 exports.config = {
     //
@@ -34,7 +36,7 @@ exports.config = {
     reporters: ['spec', ['allure', {
         outputDir: 'allure-results',
         disableWebdriverStepsReporting: true,
-        disableWebdriverScreenshotsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
     }]],
     //
     // ============
@@ -201,13 +203,19 @@ exports.config = {
      * Hook that gets executed before the suite starts
      * @param {Object} suite suite details
      */
-    // beforeSuite: function (suite) {
-    // },
+     beforeSuite: function (suite) {
+        browser.deleteCookies();
+        global.allureReporter = allureReporter;
+        allureReporter.addFeature(suite.name);
+        allureReporter.addDescription("generating Allure reports " + suite.name);
+    },
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
-    // beforeTest: function (test, context) {
-    // },
+     beforeTest: function (test, context) {
+        allureReporter.addEnvironment("BROWSER", browser.capabilities.browserName);
+
+    },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
@@ -230,8 +238,28 @@ exports.config = {
      * @param {Boolean} result.passed    true if test has passed, otherwise false
      * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+     afterTest: async function (test, context, { error, result, duration, passed, retries }) {
+
+        //var now = new Date();
+        var timelagging = 10.5; // 5 or 6
+        var utc = new Date();
+        //var cdt = new Date(utc.getTime()-((1 * 60 * 60 * 1000) * timelagging));
+        
+        var month = utc.getMonth()+1;
+        var name = '_'+ utc.getDate()+'_'+month+'_'+utc.getFullYear()+'_'+utc.getHours()+'_'+utc.getMinutes()+'_'+utc.getSeconds();
+        var screenshotPath = './error-screenshots/';
+        testtitle = await context.test.title;
+        // testtitle = await testtitle.split(":");
+        // testtitle = await testtitle[1];
+        var filename = await testtitle + '_' + name;
+        var path = screenshotPath + filename;
+
+        var logs = '';
+
+        if (error) {
+            await browser.saveScreenshot(path+'.png');
+        }    
+    },
 
 
     /**

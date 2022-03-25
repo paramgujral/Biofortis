@@ -97,11 +97,11 @@ class DataEntryBiomaterialPage extends Page{
             let auditTrailField;
             let auditTrailvalue = await auditTrailData[key];
             if(key=='Added Fields'){
-                auditTrailField = await $('//p[contains(text(),"Added")]//ancestor::li');
+                auditTrailField = await $('//p[contains(text(),"Added")]//parent::li');
             }else{
-                auditTrailField = await $('//span[text()="'+key+'"]//ancestor::li');
+                auditTrailField = await $('//span[text()="'+key+'"]//parent::li');
             }
-            await CommonActions.assertTextPresentOnElement(auditTrailField, auditTrailvalue);
+            await CommonActions.validateText(auditTrailField, auditTrailvalue);
         })
         await CommonActions.click(this.closeAuditTrail, "Close Audit Trail");
     }

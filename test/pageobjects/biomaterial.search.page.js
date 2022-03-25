@@ -123,7 +123,7 @@ class BiomaterialSearchPage extends Page{
         let URL = await browser.getUrl();
         let ID = await this.propertiesIDValue.getText();
         
-        if(URL.toString().indexOf(ID)!=-1){
+        if(URL.toString().includes(ID)!=-1){
             allureReporter.addStep(ID +' is the ID in Record Properties', 'attachment', 'passed');
         }else{
             allureReporter.addStep(ID + ' isn\'t the ID in Record Properties', 'attachment', 'broken');
@@ -137,17 +137,18 @@ class BiomaterialSearchPage extends Page{
         let CreatedOn = await this.propertiesCreatedOnValue.getText();
         let ModifyBy = await this.propertiesModifyByValue.getText();
         let ModifyOn = await this.propertiesModifyOnValue.getText();
+
         let userName = await this.linkAccount.getText();
 
-        if(CreatedBy.toString().indexOf(userName)!=-1 && ModifyBy.toString().indexOf(userName)!=-1){
+        if(CreatedBy.toString().includes(userName)!=-1 && ModifyBy.toString().includes(userName)!=-1){
             allureReporter.addStep(userName +' is the creator and modifier in the Record Properties', 'attachment', 'passed');
         }else{
             allureReporter.addStep(userName +' isn\'t the creator and modifier in the Record Properties', 'attachment', 'broken');
         }
 
-        let modifyDate = Moment(new Date()).format('mm/dd/yyyy');
+        let modifyDate = Moment(new Date()).format('MM/DD/yyyy');
 
-        if(CreatedOn.toString().indexOf(modifyDate)!=-1 && ModifyOn.toString().indexOf(modifyDate)!=-1){
+        if(CreatedOn.toString().includes(modifyDate)!=-1 && ModifyOn.toString().includes(modifyDate)!=-1){
             allureReporter.addStep(modifyDate +' is the create and modify Date in the Record Properties', 'attachment', 'passed');
         }else{
             allureReporter.addStep(modifyDate +' isn\'t the create and modify Date in the Record Properties', 'attachment', 'broken');
@@ -172,14 +173,14 @@ class BiomaterialSearchPage extends Page{
         })
 
         let humanReadableTimeSpan = await this.propertiesExternalID.getText();
-        if(humanReadableTimeSpan.toString().indexOf("SECOND AGO")!=-1){
+        if(humanReadableTimeSpan.toString().includes("SECOND AGO")!=-1){
             allureReporter.addStep(humanReadableTimeSpan +' is recorded in the Audit Trail.', 'attachment', 'passed');
         }else{
             allureReporter.addStep(humanReadableTimeSpan +' isn\'t recorded in the Audit Trail.', 'attachment', 'broken');
         }
 
         await CommonActions.validateElementIsDispalyed(this.auditTrailUser, 'User name is present in Audit Trail', 'User name isn\'t present in Audit Trail');
-        let modifyDate = Moment(new Date()).format('mm/dd/yyyy');
+        let modifyDate = Moment(new Date()).format('MM/DD/yyyy');
 
         await CommonActions.assertTextPresentOnElement(this.auditTrailEditDateTime, modifyDate.toString());
 

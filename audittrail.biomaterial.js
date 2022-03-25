@@ -20,7 +20,7 @@ module.exports = {
 },
 
     editTrailBiomaterial:{
-        'Name': 'changed from "Test Automation Biomaterial - 2" to "Test Automation Biomaterial - 2 updated"'
+        'Name': 'changed from "Test Automation Biomaterial" to "Test Automation Biomaterial Updated"'
     }
 
 }
