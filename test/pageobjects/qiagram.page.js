@@ -54,7 +54,7 @@ class QiagramPage extends Page{
         }
         await CommonActions.click(this.btnSearch, "Search Datasource");
         await browser.pause(5000);
-        await expect(this.noResult).not.toBeDisplayed(); 
+        await CommonActions.validateElementIsNotDispalyed(this.noResult, 'Datasource found!', 'No datasource found!');
     }
     
     async validateDatasourceSearchWithBlankSearchString() {

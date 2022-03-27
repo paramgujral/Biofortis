@@ -16,3 +16,5 @@ node_modules
 allure-results
 
 allure-report
+
+error-screenshots

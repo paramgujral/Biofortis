@@ -15,23 +15,24 @@ class StoragePage extends Page{
      * e.g. to login using username and password
      */
     async changeStorage (storageName, storageunits) {
-        let currentStorage = this.headerStorage.getText();
+        let currentStorage = await this.headerStorage.getText();
         allureReporter.addStep('Current Storage: '+currentStorage, 'attachment', 'passed');
         await CommonActions.click(this.btnChangeFacility, "Change Facility");
-        let elemStorage = $(`//span[text()="${storageName}"]//ancestor::a`)
+        let elemStorage = await $(`//span[text()="${storageName}"]//ancestor::a`)
         await CommonActions.click(elemStorage, storageName); 
-        currentStorage = this.headerStorage.getText();
+        currentStorage = await this.headerStorage.getText();
         allureReporter.addStep('New Storage: '+currentStorage, 'attachment', 'passed');
         
         for(const unit of storageunits) {
             let elemUnit = await $(`//span[text()="${unit}"]`);
-            await expect(elemUnit).toBeDisplayed();
+            await CommonActions.validateElementIsDispalyed(elemUnit, unit+': Store unit Found', unit +': Store unit Not found!');
         }
     }
 
     async validateStorageInaccessible (storageName) {
+        await CommonActions.click(this.btnChangeFacility, "Change Facility");
         let elemStorage = $(`//span[text()="${storageName}"]//ancestor::a`)
-        await expect(elemStorage).not.toBeDisplayed(); 
+        await CommonActions.validateElementIsNotDispalyed(elemStorage, 'Storage inaccessible', 'Storage is accessible');
     }
 
 }

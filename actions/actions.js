@@ -60,16 +60,14 @@ class actions {
        }
 
 
-    async validateText(elem, text){
+    async validateText(elem, elemName, text){
     try {
         await elem.waitForDisplayed({timeout : this.shortDynamicWait()})
         let actualText = await elem.getText();
-        console.log('@@@@@@@@@@@@@@@@@@@@@@@@Actual',actualText);
-        console.log('@@@@@@@@@@@@@@@@@@@@@@@@Expected',text);
         if(actualText.indexOf(text)!=-1){
-            allureReporter.addStep('Verified that '+text+' successfully ', this.getScreenshot() ,'passed');
+            allureReporter.addStep('Verified field '+elemName+' has value '+text+' successfully', 'attachment' ,'passed');
         }else{
-            allureReporter.addStep(text+' not present ', this.getScreenshot() ,'failed');
+            allureReporter.addStep('Verified field '+elemName+' has value other than '+text, this.getScreenshot() ,'failed');
         }
     } catch (Error) {
         console.log(Error.message);
@@ -80,24 +78,16 @@ class actions {
         try {
             if(await elem.isDisplayed()){
                 allureReporter.addStep(messageOnPass, 'attachment' ,'passed');
+                return true;
             }else{                
                 allureReporter.addStep(messageOnFail, this.getScreenshot() ,'failed');
+                return false;
             }
         } catch (error) {
             allureReporter.addStep(error.message, this.getScreenshot() ,'failed');
+            return false;
         }
     }
-
-    async addStepInReport(status, reportMessage){
-        if (status=='pass'){
-            allureReporter.addStep(reportMessage, 'attachment' ,'passed');
-        }else if(status=='fail'){
-            allureReporter.addStep(reportMessage, 'attachment' ,'falied');
-        }else if(status=='broken'){
-            allureReporter.addStep(reportMessage, 'attachment' ,'broken');
-        }
-    }
-
 
     async validateElementIsNotDispalyed(elem, messageOnPass, messageOnFail){
         try {
@@ -111,11 +101,21 @@ class actions {
         }
     }
 
+    async addStepInReport(status, reportMessage){
+        if (status=='pass'){
+            allureReporter.addStep(reportMessage, 'attachment' ,'passed');
+        }else if(status=='fail'){
+            allureReporter.addStep(reportMessage, this.getScreenshot() ,'falied');
+        }else if(status=='broken'){
+            allureReporter.addStep(reportMessage, this.getScreenshot() ,'broken');
+        }
+    }
+
     async assertTextPresentOnElement(elem , text){
         try {
             await elem.waitForDisplayed({timeout : this.shortDynamicWait()})
             await expect(elem).toHaveTextContaining(text)
-            allureReporter.addStep('Verified that '+text+' successfully ', this.getScreenshot() ,'passed');
+            allureReporter.addStep('Verified that '+text+' successfully ', 'attachment' ,'passed');
         } catch (Error) {
             allureReporter.addStep(text+' not present ', this.getScreenshot() ,'failed');
         }
@@ -127,14 +127,14 @@ class actions {
             allureReporter.addStep('expected '+logname+" is displayed","attachment", "passed");
             return isDisplayed           
         } catch (error) {
-            allureReporter.addStep('expected '+logname+" is not displayed","attachment", "failed");
+            allureReporter.addStep('expected '+logname+" is not displayed",this.getScreenshot(), "failed");
         }
     }
 
     async expectToHaveTitle(title){
         try {
             await expect(browser).toHaveTitle(title);
-            allureReporter.addStep('Validated that '+title+' is successfully displayed', this.getScreenshot(),'passed');
+            allureReporter.addStep('Validated that '+title+' is successfully displayed', "attachment",'passed');
         } catch (Error) {
             allureReporter.addStep('Expected page '+title+' is not displayed', this.getScreenshot(), 'failed');
         }
@@ -165,7 +165,7 @@ class actions {
             await elem.clear();
             allureReporter.addStep("able to clear the field " + logname, 'attachment', 'passed');
         } catch (err) {
-            allureReporter.addStep("unable to clear the field " + logname, 'attachment', 'failed');
+            allureReporter.addStep("unable to clear the field " + logname, this.getScreenshot(), 'failed');
         }
     }
 
@@ -178,7 +178,7 @@ class actions {
             await browser.pause(2000);
         } catch (err) {
             await console.log(err);
-            allureReporter.addStep("unable to click " + logname + " as the element not displayed", 'attachment', 'failed');
+            allureReporter.addStep("unable to click " + logname + " as the element not displayed", this.getScreenshot(), 'failed');
             await assert.fail("unable to click " + logname);
         }
 
@@ -190,7 +190,7 @@ class actions {
             assert.equal(elem, logname);
             allureReporter.addStep("able to validate text " + logname, 'attachment', 'passed')
         } catch (err) {
-            allureReporter.addStep("unable to click " + logname + " as it is not displayed", 'attachment', 'failed');
+            allureReporter.addStep("unable to click " + logname + " as it is not displayed", this.getScreenshot(), 'failed');
             await assert.fail("unable to validate " + logname);
         }
     }
@@ -204,7 +204,7 @@ class actions {
            allureReporter.addStep("able to enter " + value + " into the field " + logname, 'attachment', 'passed')
            await browser.pause(2000);
         } catch (err) {
-            allureReporter.addStep("unable to enter " + value + " into the field " + logname, 'attachment', 'failed');
+            allureReporter.addStep("unable to enter " + value + " into the field " + logname, this.getScreenshot(), 'failed');
             assert.fail("unable to enter " + logname);
         }
     };
@@ -216,7 +216,7 @@ class actions {
             await elem.selectByAttribute('name', name);
             allureReporter.addStep("able to select " + name + " from dropdown " + logname, 'attachment', 'passed');
         } catch (err) {
-            allureReporter.addStep("unable to select " + name + " from dropdown " + logname, 'attachment', 'failed');
+            allureReporter.addStep("unable to select " + name + " from dropdown " + logname, this.getScreenshot(), 'failed');
             assert.fail("unable to select " + logname);
         }
     }
@@ -227,7 +227,7 @@ class actions {
             await elem.dragAndDrop(target)
             allureReporter.addStep("able to drag " + value + " from dropdown " + logname, 'attachment', 'passed');
         } catch (err) {
-            allureReporter.addStep("unable to select " + value + " from dropdown " + logname, 'attachment', 'failed');
+            allureReporter.addStep("unable to select " + value + " from dropdown " + logname, this.getScreenshot(), 'failed');
             assert.fail("unable to select " + logname);
         }
     }

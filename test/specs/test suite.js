@@ -14,13 +14,13 @@ const Subjects = require('../pageobjects/subjects.page');
 
 
 
-describe('Labmatrix: Automation Suite', () => {
+describe('Labmatrix Automation Suite', () => {
     beforeEach(async () => {
         await LoginPage.login(Data.url, Data.userName, Data.password);
     })
 
-    describe('01-Datasource basic search and pagination', async () => {
-        it('01-Datasource basic search and pagination', async () => {
+    describe('01 - Datasource basic search and pagination', async () => {
+        it('Datasource basic search and pagination', async () => {
             await HomePage.navigateToQiagram(); 
             await QiagramPage.navigateQiagramDatasourceManager();
             await QiagramPage.searchDatasource(Data.dataSourceSearch.datasourceName, Data.dataSourceSearch.datasourceType, "Yes");
@@ -28,14 +28,14 @@ describe('Labmatrix: Automation Suite', () => {
         });
     });
 
-    describe('03-Form Management', async () => {
+    describe('03 - Form Management', async () => {
 
-        it('03-Form Management - Create new', async () => {
+        it('Form Management - Create new', async () => {
             await HomePage.navigateToAdministration();
             await AdminPage.createNewForm(Data.newFormOption, Data.newFormName, Data.FormFields.Fields);
         });
 
-        it('03-Form Management Audit Trail for new form', async () => {
+        it('Audit Trail for new form', async () => {
             await HomePage.navigateToAdministration();
             await AdminPage.searchAndOpenForm(Data.newFormName);
             await AdminPage.navigateToAuditTrail();
@@ -43,7 +43,7 @@ describe('Labmatrix: Automation Suite', () => {
         });
 
 
-        it('03-Form Management Audit Data - Edit', async () => {
+        it('Audit Trail - Edit', async () => {
             await HomePage.navigateToAdministration();
             await AdminPage.updateForm(Data.newFormName, Data.FormFields.Fields[0].name, Data.updateFieldName);
             await AdminPage.navigateToAuditTrail();
@@ -52,15 +52,15 @@ describe('Labmatrix: Automation Suite', () => {
     });
 
 
-    describe('04-History is not available for deleted records', async () => {
-        it('04-History is not available for deleted records', async () => {
+    describe('04 - History is not available for deleted records', async () => {
+        it('History is not available for deleted records', async () => {
             await HomePage.navigateToAdministration();
             await AdminPage.deletForm(Data.newFormName);
         });
     });
     
-    describe('05-Create Biomaterial from multiple locations', async () => {
-        it('05-Create Biomaterial from multiple locations', async () => {
+    describe('05 - Create Biomaterial from multiple locations', async () => {
+        it('Create Biomaterial from multiple locations', async () => {
             await HomePage.navigateToCreateBiomaterialFromDataEntry(Data.studyCode);
             await BiomaterialNew.createBiomaterial(Data.newBiomaterialName, Data.newBiomaterialCode);
             await BiomaterialNew.navigateToAuditTrail();
@@ -80,8 +80,8 @@ describe('Labmatrix: Automation Suite', () => {
         });
     })
 
-    describe('06-Edit Biomaterial from its own page', async () => {
-        it.only('06-Edit Biomaterial from its own page', async () => {
+    describe('06 - Edit Biomaterial from its own page', async () => {
+        it('Edit Biomaterial from its own page', async () => {
             await HomePage.navigateToBiomaterial();
             await BiomaterialSearch.searchBiomaterialWithStudyCode(Data.studyCode);
             await BiomaterialSearch.openBiomaterial(Data.newBiomaterialName);
@@ -94,8 +94,8 @@ describe('Labmatrix: Automation Suite', () => {
         });
     });
 
-    describe('02-Users can delete biomaterial records', async () => {
-        it('02-Users can delete biomaterial records', async () => {
+    describe('02 - Users can delete biomaterial records', async () => {
+        it('Users can delete biomaterial records', async () => {
             await HomePage.navigateToBiomaterial();
             await BiomaterialSearch.searchBiomaterialWithStudyCode(Data.studyCode);
             await BiomaterialSearch.openBiomaterial(Data.updateBiomaterialName);
@@ -103,41 +103,39 @@ describe('Labmatrix: Automation Suite', () => {
         });
     });
 
-    describe('07-Storage: Change Facility', async () => {
-        it('07-Storage: Change Facility', async () => {
+    describe('07 - Storage: Change Facility', async () => {
+        it('Change Storage Facility', async () => {
             await HomePage.navigateToStorage();
             await Storage.changeStorage(Data.storage1, Data.storage1Units);
         });
     
-        it('07-Storage: inaccessible', async () => {
+        it('Storage is inaccessible', async () => {
             await HomePage.navigateToStorage();
             await Storage.validateStorageInaccessible(Data.storage2);
         });
     });
 
-    describe('08-Subject Search', async () => {
-        it('08-Subject Search', async () => {
+    describe('08 - Subject Search', async () => {
+        it('Subject Search', async () => {
             await HomePage.navigateToSubject();
             await Subjects.searchSubjects(Data.searchSubjectData);
         });
-    });
-
-    describe('08-Subject Search - List opening on double click', async () => {
-        it('08-Subject Search - List opening on double click', async () => {
+    
+        it('List opening on double click on search Subject form', async () => {
             await HomePage.navigateToSubject();
             await Subjects.validateListOpeningOnDoubleClick();
         });
     });
 
-    it('09-Cascade Delete - Subject', async () => {
-        it('09-Cascade Delete - Subject', async () => {
+    describe('09 - Cascade Delete - Subject', async () => {
+        it('Cascade Delete - Subject', async () => {
             await HomePage.navigateToSubject();
             await Subjects.deletingTheSubjectWithSubjectCode(Data.subjectCode, Data.deletStudyCode, Data.password);
         });
     });
 
-    describe('10-Labmatrix has a general home page ', async () => {
-        it('10-Labmatrix has a general home page ', async () => {
+    describe('10 - Labmatrix has a general home page ', async () => {
+        it('Labmatrix has a general home page ', async () => {
             await HomePage.validateLabmatrixUserManuallink();
             await HomePage.validateBiofortisForumlink();
             await HomePage.validateTermsofUselink();

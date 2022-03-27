@@ -64,23 +64,24 @@ class BiomaterialSearchPage extends Page{
         await browser.keys("\uE007");
         await browser.pause(2000);
         await browser.keys("\uE007");
-        await expect(this.searchFormNoRecords).not.toBeDisplayed(); 
-        let elemSearchResultStudy = $$('//td/div[text()="'+studyCode+'"]');
-        await expect(elemSearchResultStudy).toBeDisplayed();
+        await CommonActions.validateElementIsNotDispalyed(this.searchFormNoRecords, 'Biomaterial Found!', 'Biomaterial not found');
     }
 
     async searchBiomaterialforNotfound (studyCode) {
         await CommonActions.sendKeys(this.txtStudyCode, studyCode, "Study Code");
         await browser.keys("\uE007");
-        let elemSearchResultStudy = $$('//td/div[text()="'+studyCode+'"]');
-        await expect(elemSearchResultStudy).not.toBeDisplayed();
+        await browser.pause(2000);
+        await browser.keys("\uE007");
+        await CommonActions.validateElementIsDispalyed(this.searchFormNoRecords, 'Biomaterial is not Found!', 
+        'Biomaterial found expected to be not');
     }
 
     async openBiomaterial(biomaterialName){
         let elemSearchResultBiomaterial = $('//td/div/a[text()="'+biomaterialName+'"]');
         await CommonActions.click(elemSearchResultBiomaterial, "Biomaterial");
         let elemHeaderBiomaterial = $('//div[@class="c-header-text" and text()="'+biomaterialName+'"]');
-        await expect(elemHeaderBiomaterial).toBeDisplayed();
+        await CommonActions.validateElementIsDispalyed(elemHeaderBiomaterial, 'Biomaterial page opned', 
+        'Unable to navigate to Biomaterial page');
     }
 
     async editBiomaterial(biomaterialName){
@@ -89,14 +90,19 @@ class BiomaterialSearchPage extends Page{
         await CommonActions.sendKeys(this.txtNameBiomaterial, updatedName, "Biomaterial Name");
         await CommonActions.click(this.btnSaveBiomaterial, "Save");
         let elemBiomaterialName = $('//div/div[text()="'+updatedName+'"]');
-        await expect(elemBiomaterialName).toBeDisplayed();
+        await CommonActions.validateElementIsDispalyed(elemBiomaterialName, 'Biomaterial edited sucessfully', 
+        'Unable to edit Biomaterial');
     }
 
     async deleteBiomaterial(biomaterialName){
         await CommonActions.click(this.btnDeleteBioMaterial, "Delete Biomaterial");
         await browser.pause(2000);
-        await expect(this.confirmDeleteMessage).toBeDisplayed();
-        await expect(this.confirmDeleteChild).toBeDisplayed();
+        await CommonActions.validateElementIsDispalyed(this.confirmDeleteMessage, 
+            '"Child Biomaterial record found" message found on confirm delete pop-up for BioMaterial', 
+            'No Child Biomaterial found for Biomaterial on confirm delete pop-up for BioMaterial');
+        await CommonActions.validateElementIsDispalyed(this.this.confirmDeleteChild, 
+            'Child Biomaterial name found on confirm delete pop-up for BioMaterial', 
+            'No Child Biomaterial found for Biomaterial on confirm delete pop-up for BioMaterial');
         await CommonActions.sendKeys(this.confirmDeletePassword, Data.password, "Password");
         await CommonActions.click(this.btnDeleteRecord, "Delete Record");
         let elemDeletedBiomaterialName = $('//b[@text="'+biomaterialName+'"}]');
@@ -110,15 +116,25 @@ class BiomaterialSearchPage extends Page{
     }
 
     async verifyPropertiesBiomaterial(){
-        await expect(this.propertiesID).toBeDisplayed(); 
-        await expect(this.propertiesExternalID).toBeDisplayed(); 
-        await expect(this.propertiesExternalSource).toBeDisplayed(); 
-        await expect(this.propertiesExternalVersion).toBeDisplayed(); 
-        await expect(this.propertiesBatchID).toBeDisplayed(); 
-        await expect(this.propertiesCreatedBy).toBeDisplayed(); 
-        await expect(this.propertiesCreatedOn).toBeDisplayed(); 
-        await expect(this.propertiesModifyBy).toBeDisplayed(); 
-        await expect(this.propertiesModifyOn).toBeDisplayed(); 
+
+        await CommonActions.validateElementIsDispalyed(this.propertiesID, 'ID found on Properties popup for Biomaterial', 
+        'ID is not found on Properties popup for Biomaterial'); 
+        await CommonActions.validateElementIsDispalyed(this.propertiesExternalID, 'External ID found on Properties popup for Biomaterial', 
+        'External ID is not found on Properties popup for Biomaterial');
+        await CommonActions.validateElementIsDispalyed(this.propertiesExternalSource, 'External Source found on Properties popup for Biomaterial', 
+        'External Source is not found on Properties popup for Biomaterial');
+        await CommonActions.validateElementIsDispalyed(this.propertiesExternalVersion, 'External Version found on Properties popup for Biomaterial', 
+        'External Version is not found on Properties popup for Biomaterial');
+        await CommonActions.validateElementIsDispalyed(this.propertiesBatchID, 'Batch ID found on Properties popup for Biomaterial', 
+        'Batch ID is not found on Properties popup for Biomaterial');
+        await CommonActions.validateElementIsDispalyed(this.propertiesCreatedBy, 'Created By found on Properties popup for Biomaterial', 
+        'Created By is not found on Properties popup for Biomaterial');
+        await CommonActions.validateElementIsDispalyed(this.propertiesCreatedOn, 'Created On found on Properties popup for Biomaterial', 
+        'Created On is not found on Properties popup for Biomaterial');
+        await CommonActions.validateElementIsDispalyed(this.propertiesModifyBy, 'Modify By found on Properties popup for Biomaterial', 
+        'Modify By is not found on Properties popup for Biomaterial');
+        await CommonActions.validateElementIsDispalyed(this.propertiesModifyOn, 'Modify On found on Properties popup for Biomaterial', 
+        'Modify On is not found on Properties popup for Biomaterial');
 
         let URL = await browser.getUrl();
         let ID = await this.propertiesIDValue.getText();
@@ -169,10 +185,10 @@ class BiomaterialSearchPage extends Page{
         .forEach(async function eachKey(key) {
             let auditTrailvalue = await auditTrailData[key];
             let auditTrailField = await $('//span[text()="'+key+'"]//ancestor::li');
-            await CommonActions.assertTextPresentOnElement(auditTrailField, auditTrailvalue);
+            await CommonActions.validateText(auditTrailField, key, auditTrailvalue);
         })
 
-        let humanReadableTimeSpan = await this.propertiesExternalID.getText();
+        let humanReadableTimeSpan = await this.auditTrailEditTimeSpan.getText();
         if(humanReadableTimeSpan.toString().includes("SECOND AGO")!=-1){
             allureReporter.addStep(humanReadableTimeSpan +' is recorded in the Audit Trail.', 'attachment', 'passed');
         }else{
@@ -180,9 +196,9 @@ class BiomaterialSearchPage extends Page{
         }
 
         await CommonActions.validateElementIsDispalyed(this.auditTrailUser, 'User name is present in Audit Trail', 'User name isn\'t present in Audit Trail');
-        let modifyDate = Moment(new Date()).format('MM/DD/yyyy');
+        let modifyDate = Moment(new Date()).format('M/DD/yyyy');
 
-        await CommonActions.assertTextPresentOnElement(this.auditTrailEditDateTime, modifyDate.toString());
+        await CommonActions.validateText(this.auditTrailEditDateTime, "Date and Time", modifyDate.toString());
 
         await CommonActions.click(this.closeAuditTrail, "Close Audit Trail");
     }

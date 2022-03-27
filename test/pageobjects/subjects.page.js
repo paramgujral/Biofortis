@@ -43,11 +43,10 @@ async searchSubjects (searchSubjectData) {
     await CommonActions.clickEnter();
     await CommonActions.click(this.searchBtn, "search Btn");
     let elemSearchResult = await $('//td/div/a[text()="'+searchSubjectData.subjectCode+'"]');
-    await expect(elemSearchResult).toBeDisplayed();
+    await CommonActions.validateElementIsDispalyed(elemSearchResult, 'Subject found', 'Subject isn\'t found');
     await CommonActions.click(elemSearchResult, "Subject from Search Result");
-
     let elemheader = await $('//div[@class="c-header-text" and text()="'+searchSubjectData.subjectCode+'"]');
-    await expect(elemheader).toBeDisplayed();
+    await CommonActions.validateElementIsDispalyed(elemheader, 'Open Subject page', 'Subject page isn\'t Opened');
 }
 async validateListOpeningOnDoubleClick () {
     //await expect(this.listOfAvailableValues).toBeElementsArrayOfSize(0);
@@ -88,10 +87,13 @@ async deletingTheSubjectWithSubjectCode(subjectCode, studyCode, password) {
     await CommonActions.clickEnter()
     await CommonActions.click(this.searchBtn, "search Btn");
     let elemSearchResult = await $('//td/div/a[text()="'+studyCode+'"]');
-    await expect(elemSearchResult).toBeDisplayed();
+    await CommonActions.validateElementIsDispalyed(elemSearchResult, 'Subject found', 'Subject isn\'t found');
+
     await CommonActions.click(elemSearchResult, "Subject from Search Result");
     let elemheader = await $('//div[@class="c-header-text" and text()="'+studyCode+'"]');
-    await expect(elemheader).toBeDisplayed();
+    
+    await CommonActions.validateElementIsDispalyed(elemheader, 'Open Subject page', 'Subject page isn\'t Opened');
+
     await CommonActions.click(this.deleteTrashIcon, "delete trash icon");
     await CommonActions.sendKeys(this.confirmDeleteFormpassword, password, "Password");
     await CommonActions.click(this.deleteRecord, "Delete Record");

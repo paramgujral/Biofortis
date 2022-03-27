@@ -64,16 +64,16 @@ class DataEntryBiomaterialPage extends Page{
     }
 
     async navigateToSubject () {
-        await CommonActions.click(this.menuSubject, "Subject tab")
-        await expect(this.newSubject).toBeDisplayed(); 
+        await CommonActions.click(this.menuSubject, "Subject tab");
+        await CommonActions.validateElementIsDispalyed(this.newSubject, "New Subject page open", 'New Subject page isn\'t opened');
     }
 
     async navigateToBioMaterialFromSubject (biomaterial, childBiomaterial) {
         await CommonActions.click(this.menuBioMaterial, "BioMaterials tab")
         let elemBiomaterial = $('//a[text()="'+biomaterial+'"]');
         let elemChilsBiomaterial = $('//a[text()="'+childBiomaterial+'"]');
-        await expect(elemBiomaterial).toBeDisplayed();
-        await expect(elemChilsBiomaterial).toBeDisplayed();  
+        await CommonActions.validateElementIsDispalyed(elemBiomaterial, "Biomaterial(s) are displayed. Navigated to Biomaterial page", 'Unable to Navigate to Bimaterial');
+        await CommonActions.validateElementIsDispalyed(elemChilsBiomaterial, "Child Biomaterial(s) are displayed", '');
     }
 
     async createNewBioMaterialFromBiomaterialTab(name, barcode){
@@ -82,8 +82,8 @@ class DataEntryBiomaterialPage extends Page{
        }
 
     async validateNoChildForNewlyCreateBiomaterial(){
-        //child Biomaterial element not displayed
-        await expect(this.childBiomaterialUnderBiomaterial).not.toBeDisplayed();  
+        CommonActions.validateElementIsNotDispalyed(this.childBiomaterialUnderBiomaterial, 'No Child Biomaterial(s) found for newly created Biomaterial',
+         'Child Biomaterial is found for newly created Biomaterial');
     }
 
     async navigateToAuditTrail(){
@@ -101,7 +101,7 @@ class DataEntryBiomaterialPage extends Page{
             }else{
                 auditTrailField = await $('//span[text()="'+key+'"]//parent::li');
             }
-            await CommonActions.validateText(auditTrailField, auditTrailvalue);
+            await CommonActions.validateText(auditTrailField, key, auditTrailvalue);
         })
         await CommonActions.click(this.closeAuditTrail, "Close Audit Trail");
     }

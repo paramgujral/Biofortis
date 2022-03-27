@@ -26,7 +26,7 @@ class AdministrationPage extends Page{
     get chkbxFirstField() {return $('//div[@class="x-grid-row-checker"]')};
     get btnSaveForm() {return $('//span[text()="Save"]')}
     get txtSearchForm() {return $('//input[contains(@componentid, "ext-comp")]')}
-    get searchFormNoRecords() {return $('//div[text() = "No records to display"]')};
+    get searchFormNoRecords() {return $('//div[text()="No records to display"]')};
 
     
     //get firstField() {return $('=Field1')};
@@ -38,7 +38,7 @@ class AdministrationPage extends Page{
 
     get toolbar() {return $('//a[preceding-sibling::a[@data-qtip="Delete this form."]]')};
     get viewAuditTrail() {return $('//span[text()="View Audit Trail"]//ancestor::a')};
-    get closeAuditTrail() {return $('//span[text()="Close"]//ancestor::a')};
+    get closeButton() {return $('//span[text()="Close"]//ancestor::a')};
     
     /**
      * a method to encapsule automation code to interact with the page
@@ -52,13 +52,15 @@ class AdministrationPage extends Page{
         await CommonActions.click(formOption, option);
         await CommonActions.sendKeys(this.newFormName, formName, "New Form Name"); 
         await CommonActions.click(this.btndefineFields, "Define Fields");
-        await expect(this.pageTitleNewForm).toBeDisplayed();
+        await CommonActions.validateText(this.pageTitleNewForm, "Form Page Title", "New Form");
         await this.addFields(fieldsdata);
         await CommonActions.click(this.btnSaveForm, "Save Form");
-        if (this.closeAuditTrail.isDisplayed()){
-            let message = await `${formName} is already present!`;
+        if (this.closeButton.isDisplayed()){
+            let message = `${formName} is already present!`;
             await CommonActions.addStepInReport("broken", message);
-            await CommonActions.click(this.closeAuditTrail, "Close error popup saying form is already available")
+            await CommonActions.click(this.closeButton, "Close error popup saying form is already available")
+        }else{
+            await CommonActions.validateText(this.pageTitleNewForm, "Form Page Title", "Edit Form");
         }
     }
 
@@ -66,7 +68,6 @@ class AdministrationPage extends Page{
         CommonActions.click(this.btnAddField, "Add Field");
         for(const data of fieldsdata) {
             await CommonActions.sendKeys(this.newFieldName, data.name, "Field Name");
-            //await browser.pause(20000);
             await CommonActions.sendKeys(this.newFieldLable, data.lable, "Field Lable");
             await CommonActions.click(this.newFieldDatatype, "Field Data type");
             let elemDataType = await $(`//td/div[text()="${data.dataType}"]`); 
@@ -77,38 +78,37 @@ class AdministrationPage extends Page{
             await CommonActions.click(this.addAnotherField, "Add Another Field");
             await CommonActions.click(this.btnAdd, "Add");
         }
-        
     }
 
     async searchAndOpenForm(formName){
         await CommonActions.click(this.leftnavForm, "Form from left navigation");
         await CommonActions.sendKeys(this.txtSearchForm, formName, "Search form name");
         await browser.keys("\uE007");
-        await expect(this.searchFormNoRecords).not.toBeDisplayed(); 
         let elemFormMatcherRecord = await $('//a[text()="'+formName+'"]');
-        await CommonActions.click(elemFormMatcherRecord, "Matched form");
+        let formFound = await CommonActions.validateElementIsDispalyed(elemFormMatcherRecord, "Form is found", 'Form isn\'t found');
+        if(formFound){
+            await CommonActions.click(elemFormMatcherRecord, "Matched form");
+        }
     }
 
     async updateForm(formName,fieldName,updatedFiedlName){
         await this.searchAndOpenForm(formName);
-        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@', fieldName);
         let elemFieldName = await $('//div[contains(text(),"'+fieldName+'")]');
-        await CommonActions.click(elemFieldName, "First Field");
+        await CommonActions.click(elemFieldName, "Form Field");
         await CommonActions.sendKeys(this.newFieldName, updatedFiedlName, "Udpate Lable Name");
         await CommonActions.click(this.btnformUpdate, "Udpate Button");
-        let elemFirstFieldName = await $('//div[text()="'+updatedFiedlName+'"]');
-        await expect(elemFirstFieldName).toBeDisplayed();
         await CommonActions.click(this.btnSaveForm, "Save Form");
+        await CommonActions.validateText(this.pageTitleNewForm, "Form Page Title", "Edit Form");
     }
 
     async deletForm(formName){
-        await this.searchForm(formName);
+        await this.searchAndOpenForm(formName);
         await CommonActions.click(this.chkbxFirstField, "Check box for form")
         await CommonActions.click(this.btnformDelete, "Delete form");
         await CommonActions.click(this.popupConfirmDeleteFormYes, "Yes on confirm delete form pop-up");
         await CommonActions.sendKeys(this.confirmDeleteFormpassword, Data.password, "Password");
         await CommonActions.click(this.deleteRecord, "Delete Record");
-        await expect(this.searchFormNoRecords).toBeDisplayed(); 
+        await CommonActions.validateElementIsDispalyed(this.searchFormNoRecords, "Form has deleted", 'Form isn\'t deleted'); 
     }
 
     async navigateToAuditTrail(){
@@ -118,11 +118,8 @@ class AdministrationPage extends Page{
     }
     
     async validateAuditTrailDataForm(auditTrailData){
-        // Object.keys(auditTrailData)
-        // .forEach(async function eachKey(key) {
         for (const [key, value] of Object.entries(auditTrailData)) {
             let auditTrailField;
-            // let auditTrailvalue = await value;
             if(key=='Added Fields'){
                 auditTrailField = await $('//p[contains(text(),"Added")]//parent::li');
             }else if(key=='Updated Fields'){
@@ -131,9 +128,9 @@ class AdministrationPage extends Page{
             else{
                 auditTrailField = await $('//span[text()="'+key+'"]//parent::li');
             }
-            await CommonActions.validateText(auditTrailField, value);
+            await CommonActions.validateText(auditTrailField, key, value);
         }
-        await CommonActions.click(this.closeAuditTrail, "Close Audit Trail");
+        await CommonActions.click(this.closeButton, "Close Audit Trail");
     }
 
     async validateAuditTrailDataEditForm(auditTrailData){
@@ -148,7 +145,7 @@ class AdministrationPage extends Page{
             }
             await CommonActions.assertTextPresentOnElement(auditTrailField, auditTrailvalue);
         })
-        await CommonActions.click(this.closeAuditTrail, "Close Audit Trail");
+        await CommonActions.click(this.closeButton, "Close Audit Trail");
     }
 }
 
