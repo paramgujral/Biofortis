@@ -76,6 +76,7 @@ class actions {
 
     async validateElementIsDispalyed(elem, messageOnPass, messageOnFail){
         try {
+            await browser.pause(5000);
             if(await elem.isDisplayed()){
                 allureReporter.addStep(messageOnPass, 'attachment' ,'passed');
                 return true;
@@ -91,7 +92,7 @@ class actions {
 
     async validateElementIsNotDispalyed(elem, messageOnPass, messageOnFail){
         try {
-            if(!(await elem.isDisplayed())){
+            if(!await elem.isDisplayed()){
                 allureReporter.addStep(messageOnPass, 'attachment' ,'passed');
             }else{                
                 allureReporter.addStep(messageOnFail, this.getScreenshot() ,'failed');

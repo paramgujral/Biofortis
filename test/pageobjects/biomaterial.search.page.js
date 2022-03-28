@@ -100,7 +100,7 @@ class BiomaterialSearchPage extends Page{
         await CommonActions.validateElementIsDispalyed(this.confirmDeleteMessage, 
             '"Child Biomaterial record found" message found on confirm delete pop-up for BioMaterial', 
             'No Child Biomaterial found for Biomaterial on confirm delete pop-up for BioMaterial');
-        await CommonActions.validateElementIsDispalyed(this.this.confirmDeleteChild, 
+        await CommonActions.validateElementIsDispalyed(this.confirmDeleteChild, 
             'Child Biomaterial name found on confirm delete pop-up for BioMaterial', 
             'No Child Biomaterial found for Biomaterial on confirm delete pop-up for BioMaterial');
         await CommonActions.sendKeys(this.confirmDeletePassword, Data.password, "Password");

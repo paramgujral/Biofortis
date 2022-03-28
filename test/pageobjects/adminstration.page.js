@@ -55,13 +55,7 @@ class AdministrationPage extends Page{
         await CommonActions.validateText(this.pageTitleNewForm, "Form Page Title", "New Form");
         await this.addFields(fieldsdata);
         await CommonActions.click(this.btnSaveForm, "Save Form");
-        if (this.closeButton.isDisplayed()){
-            let message = `${formName} is already present!`;
-            await CommonActions.addStepInReport("broken", message);
-            await CommonActions.click(this.closeButton, "Close error popup saying form is already available")
-        }else{
-            await CommonActions.validateText(this.pageTitleNewForm, "Form Page Title", "Edit Form");
-        }
+        await CommonActions.validateElementIsNotDispalyed(this.closeButton, "Form Saved Successfully", "Form already exists!")
     }
 
     async addFields(fieldsdata){
@@ -80,10 +74,14 @@ class AdministrationPage extends Page{
         }
     }
 
-    async searchAndOpenForm(formName){
+    async searchForm(formName){
         await CommonActions.click(this.leftnavForm, "Form from left navigation");
         await CommonActions.sendKeys(this.txtSearchForm, formName, "Search form name");
         await browser.keys("\uE007");
+        
+    }
+
+    async openForm(formName){
         let elemFormMatcherRecord = await $('//a[text()="'+formName+'"]');
         let formFound = await CommonActions.validateElementIsDispalyed(elemFormMatcherRecord, "Form is found", 'Form isn\'t found');
         if(formFound){
@@ -91,8 +89,10 @@ class AdministrationPage extends Page{
         }
     }
 
+
     async updateForm(formName,fieldName,updatedFiedlName){
-        await this.searchAndOpenForm(formName);
+        await this.searchForm(formName);
+        await this.openForm(formName);
         let elemFieldName = await $('//div[contains(text(),"'+fieldName+'")]');
         await CommonActions.click(elemFieldName, "Form Field");
         await CommonActions.sendKeys(this.newFieldName, updatedFiedlName, "Udpate Lable Name");
@@ -102,7 +102,7 @@ class AdministrationPage extends Page{
     }
 
     async deletForm(formName){
-        await this.searchAndOpenForm(formName);
+        await this.searchForm(formName);
         await CommonActions.click(this.chkbxFirstField, "Check box for form")
         await CommonActions.click(this.btnformDelete, "Delete form");
         await CommonActions.click(this.popupConfirmDeleteFormYes, "Yes on confirm delete form pop-up");
@@ -124,6 +124,15 @@ class AdministrationPage extends Page{
                 auditTrailField = await $('//p[contains(text(),"Added")]//parent::li');
             }else if(key=='Updated Fields'){
                 auditTrailField = await $('//p[contains(text(),"Updated")]//ancestor::li');
+            }
+            else if (key.indexOf(' - 2')!=-1){
+                let key2 = key.replace(' - 2', '');
+                let auditTrailFields = await $$('//span[text()="'+key2+'"]//parent::li');
+                auditTrailField = auditTrailFields[1];
+            }else if (key.indexOf(' - 3')!=-1){
+                let key3 = key.replace(' - 3', '');
+                let auditTrailFields = await $$('//span[text()="'+key3+'"]//parent::li');
+                auditTrailField = auditTrailFields[2];
             }
             else{
                 auditTrailField = await $('//span[text()="'+key+'"]//parent::li');

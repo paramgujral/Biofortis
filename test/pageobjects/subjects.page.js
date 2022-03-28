@@ -42,42 +42,47 @@ async searchSubjects (searchSubjectData) {
     await CommonActions.sendKeys (this.barcodeSearchFeild, searchSubjectData.barcode, "barcode Search Field");
     await CommonActions.clickEnter();
     await CommonActions.click(this.searchBtn, "search Btn");
+    await browser.pause(5000);
     let elemSearchResult = await $('//td/div/a[text()="'+searchSubjectData.subjectCode+'"]');
-    await CommonActions.validateElementIsDispalyed(elemSearchResult, 'Subject found', 'Subject isn\'t found');
-    await CommonActions.click(elemSearchResult, "Subject from Search Result");
-    let elemheader = await $('//div[@class="c-header-text" and text()="'+searchSubjectData.subjectCode+'"]');
-    await CommonActions.validateElementIsDispalyed(elemheader, 'Open Subject page', 'Subject page isn\'t Opened');
+    let foundSubject = await CommonActions.validateElementIsDispalyed(elemSearchResult, 'Subject found', 'Subject isn\'t found');
+    if(foundSubject){
+        await CommonActions.click(elemSearchResult, "Subject from Search Result");
+        let elemheader = await $('//div[@class="c-header-text" and text()="'+searchSubjectData.subjectCode+'"]');
+        await CommonActions.validateElementIsDispalyed(elemheader, 'Open Subject page', 'Subject page isn\'t Opened');
+    }else{
+        await CommonActions.addStepInReport('broken', 'Subject not found');
+    }
 }
 async validateListOpeningOnDoubleClick () {
     //await expect(this.listOfAvailableValues).toBeElementsArrayOfSize(0);
 
     await this.subjectCodeSearchFeild.doubleClick();
-    await CommonActions.clear(this.subjectCodeSearchFeild);
+    //await CommonActions.clear(this.subjectCodeSearchFeild);
     await CommonActions.clickEnter();
     await expect(this.listOfAvailableValues).toBeElementsArrayOfSize(1); 
    
     await this.studyCodeSearchFeild.doubleClick();
-    await CommonActions.clear(this.studyCodeSearchFeild);
+    //await CommonActions.clear(this.studyCodeSearchFeild);
     await CommonActions.clickEnter();
     await expect(this.listOfAvailableValues).toBeElementsArrayOfSize(2); 
    
     await this.subjectIDSearchFeild.doubleClick();
-    await CommonActions.clear(this.subjectIDSearchFeild);
+    //await CommonActions.clear(this.subjectIDSearchFeild);
     await CommonActions.clickEnter();
     await expect(this.listOfAvailableValues).toBeElementsArrayOfSize(3); 
    
     await this.fullNameSearchFeild.doubleClick();
-    await CommonActions.clear(this.fullNameSearchFeild);
+    //await CommonActions.clear(this.fullNameSearchFeild);
     await CommonActions.clickEnter();
     await expect(this.listOfAvailableValues).toBeElementsArrayOfSize(4); 
    
     await this.batchIdSearchFeild.doubleClick();
-    await CommonActions.clear(this.batchIdSearchFeild);
+    //await CommonActions.clear(this.batchIdSearchFeild);
     await CommonActions.clickEnter();
     await expect(this.listOfAvailableValues).toBeElementsArrayOfSize(5); 
    
     await this.barcodeSearchFeild.doubleClick();
-    await CommonActions.clear(this.barcodeSearchFeild);
+    //await CommonActions.clear(this.barcodeSearchFeild);
     await CommonActions.clickEnter();
     await expect(this.listOfAvailableValues).toBeElementsArrayOfSize(6); 
 }
@@ -86,26 +91,33 @@ async deletingTheSubjectWithSubjectCode(subjectCode, studyCode, password) {
     await CommonActions.sendKeys(this.studyCodeSearchFeild, subjectCode, "study Code Search Feild");
     await CommonActions.clickEnter()
     await CommonActions.click(this.searchBtn, "search Btn");
-    let elemSearchResult = await $('//td/div/a[text()="'+studyCode+'"]');
-    await CommonActions.validateElementIsDispalyed(elemSearchResult, 'Subject found', 'Subject isn\'t found');
-
-    await CommonActions.click(elemSearchResult, "Subject from Search Result");
-    let elemheader = await $('//div[@class="c-header-text" and text()="'+studyCode+'"]');
     
-    await CommonActions.validateElementIsDispalyed(elemheader, 'Open Subject page', 'Subject page isn\'t Opened');
+    await browser.pause(5000);
+    if(this.searchFormNoRecords.isDisplayed()){
+        await CommonActions.addStepInReport('broken', 'No Records found!');
+    }else{
 
-    await CommonActions.click(this.deleteTrashIcon, "delete trash icon");
-    await CommonActions.sendKeys(this.confirmDeleteFormpassword, password, "Password");
-    await CommonActions.click(this.deleteRecord, "Delete Record");
-    let elemDeletedBiomaterialName = $('//div[@text="Subject '+studyCode+' deleted."}]');
-        if(elemDeletedBiomaterialName.isDisplayed()){
-            allureReporter.addStep(studyCode+" Deleted Sucessfully", 'attachment', 'passed');
-        }
-    await CommonActions.click(this.backToSearch, "Back To search");
-    await CommonActions.clear(this.studyCodeSearchFeild);
-    await CommonActions.sendKeys(this.studyCodeSearchFeild, studyCode, "study Code Search Feild");
-    await CommonActions.click(this.searchBtn, "search Btn");
-    await CommonActions.getScreenshot();
+        let elemSearchResult = await $('//td/div/a[text()="'+studyCode+'"]');
+        await CommonActions.validateElementIsDispalyed(elemSearchResult, 'Subject found', 'Subject isn\'t found');
+
+        await CommonActions.click(elemSearchResult, "Subject from Search Result");
+        let elemheader = await $('//div[@class="c-header-text" and text()="'+studyCode+'"]');
+        
+        await CommonActions.validateElementIsDispalyed(elemheader, 'Open Subject page', 'Subject page isn\'t Opened');
+
+        await CommonActions.click(this.deleteTrashIcon, "delete trash icon");
+        await CommonActions.sendKeys(this.confirmDeleteFormpassword, password, "Password");
+        await CommonActions.click(this.deleteRecord, "Delete Record");
+        let elemDeletedBiomaterialName = $('//div[@text="Subject '+studyCode+' deleted."}]');
+            if(elemDeletedBiomaterialName.isDisplayed()){
+                allureReporter.addStep(studyCode+" Deleted Sucessfully", 'attachment', 'passed');
+            }
+        await CommonActions.click(this.backToSearch, "Back To search");
+        // await CommonActions.clear(this.studyCodeSearchFeild);
+        // await CommonActions.sendKeys(this.studyCodeSearchFeild, studyCode, "study Code Search Feild");
+        await CommonActions.click(this.searchBtn, "search Btn");
+        await CommonActions.getScreenshot();
+    }
 }
 
 }

@@ -55,6 +55,7 @@ exports.config = {
     // from the same test should run tests.
     //
     maxInstances: 10,
+    //services:['selenium-standalone'],
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:

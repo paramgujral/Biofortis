@@ -37,7 +37,8 @@ describe('Labmatrix Automation Suite', () => {
 
         it('Audit Trail for new form', async () => {
             await HomePage.navigateToAdministration();
-            await AdminPage.searchAndOpenForm(Data.newFormName);
+            await AdminPage.searchForm(Data.newFormName);
+            await AdminPage.openForm(Data.newFormName);
             await AdminPage.navigateToAuditTrail();
             await AdminPage.validateAuditTrailDataForm(FormAuditTrailData.addTrail);
         });
