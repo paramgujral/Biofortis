@@ -7,71 +7,69 @@ const { assert } = require('chai');
 const path = require('path');
 class actions {
 
-    async waitForClickable(elem){
-        await browser.waitUntil(
-            async () => (await elem.isClickable(),
-            {
-                timeout: 30000,
-                timeoutMsg: "@@@@@@@@@@@element is not clickable"
-            })
-        )}
 
-    async waitFordisplay(elem){
-        await browser.waitUntil(
-            async () => (await elem.isDisplayed(),
-            {
-                timeout: 30000,
-                timeoutMsg: '------------->Element'+elem+'is not displayed'
-            })
-        )}
-
-    async getElementID(elem){
-        await this.waitForClickable(elem);
-        return await elem.getAttribute('id');
-    }
-
-    async switchToIFrame(index){
-        await browser.pause(15000); //XXX
-        await browser.switchToFrame(index);
+    async click(elem, logname) {
+        try {
+            await this.waitForClickable(elem, logname);
+            await elem.waitForDisplayed({ timeout: this.shortDynamicWait() });
+            await elem.click();
+            allureReporter.addStep("able to click " + logname, 'attachment', 'passed');
+            await browser.pause(2000);
+        } catch (err) {
+            await console.log(err);
+            allureReporter.addStep("unable to click " + logname + " as the element not displayed", this.getScreenshot(), 'failed');
+            await assert.fail("unable to click " + logname);
         }
-      
-    async switchToParent(){
-        await browser.pause(3000); //XXX
-        await browser.switchToFrame(null);
+    }
+
+    async sendKeys(elem, value, logname) {
+        try {
+           await elem.waitForExist({ timeout: this.shortDynamicWait() });
+           await elem.click();
+           await elem.setValue(value);
+           allureReporter.addStep("able to enter " + value + " into the field " + logname, 'attachment', 'passed')
+           await browser.pause(2000);
+        } catch (err) {
+            allureReporter.addStep("unable to enter " + value + " into the field " + logname, this.getScreenshot(), 'failed');
+            assert.fail("unable to enter " + logname);
         }
+    };
 
-    async switchToWindowWithTitle(title){
-        await browser.pause(3000);
-        await browser.switchWindow(title);
+    async selectDropDown(elem, name, logname) {
+        try {
+            await elem.waitForExist({ timeout: this.shortDynamicWait() });
+            await browser.waitUntil(() => elem.isClickable())
+            await elem.selectByAttribute('name', name);
+            allureReporter.addStep("able to select " + name + " from dropdown " + logname, 'attachment', 'passed');
+        } catch (err) {
+            allureReporter.addStep("unable to select " + name + " from dropdown " + logname, this.getScreenshot(), 'failed');
+            assert.fail("unable to select " + logname);
+        }
     }
 
-    async closeWindow(title){
-        await browser.pause(2000);
-        await browser.closeWindow(title);
+    async dragAndDrop(elem, target) {
+        try {
+            await elem.waitForExist({ timeout: this.shortDynamicWait() });
+            await elem.dragAndDrop(target)
+            allureReporter.addStep("able to drag " + value + " from dropdown " + logname, 'attachment', 'passed');
+        } catch (err) {
+            allureReporter.addStep("unable to select " + value + " from dropdown " + logname, this.getScreenshot(), 'failed');
+            assert.fail("unable to select " + logname);
+        }
     }
-
-    async clickEnter(){
-        await browser.pause(2000);
-        await browser.keys("\uE007");
-    }
-
-    async getScreenshot(){
-        await browser.takeScreenshot(); 
-       }
-
-
+    
     async validateText(elem, elemName, text){
-    try {
-        await elem.waitForDisplayed({timeout : this.shortDynamicWait()})
-        let actualText = await elem.getText();
-        if(actualText.indexOf(text)!=-1){
-            allureReporter.addStep('Verified field '+elemName+' has value '+text+' successfully', 'attachment' ,'passed');
-        }else{
-            allureReporter.addStep('Verified field '+elemName+' has value other than '+text, this.getScreenshot() ,'failed');
+        try {
+            await elem.waitForDisplayed({timeout : this.shortDynamicWait()})
+            let actualText = await elem.getText();
+            if(actualText.indexOf(text)!=-1){
+                allureReporter.addStep('Verified field '+elemName+' has value '+text+' successfully', 'attachment' ,'passed');
+            }else{
+                allureReporter.addStep('Verified field '+elemName+' has value other than '+text, this.getScreenshot() ,'failed');
+            }
+        } catch (Error) {
+            console.log(Error.message);
         }
-    } catch (Error) {
-        console.log(Error.message);
-    }
     }
 
     async validateElementIsDispalyed(elem, messageOnPass, messageOnFail){
@@ -158,8 +156,6 @@ class actions {
         allureReporter.addStep("switched back to parent window", 'attachemnt', 'passed')
     }
 
-    
-
    async clear(locator, logname) {
         try {
             await elem.waitForExist({ timeout: this.shortDynamicWait() });
@@ -170,21 +166,6 @@ class actions {
         }
     }
 
-    async click(elem, logname) {
-        try {
-            await this.waitForClickable(elem, logname);
-            await elem.waitForDisplayed({ timeout: this.shortDynamicWait() });
-            await elem.click();
-            allureReporter.addStep("able to click " + logname, 'attachment', 'passed');
-            await browser.pause(2000);
-        } catch (err) {
-            await console.log(err);
-            allureReporter.addStep("unable to click " + logname + " as the element not displayed", this.getScreenshot(), 'failed');
-            await assert.fail("unable to click " + logname);
-        }
-
-    }
-
     async assertText(elem, logname) {
         try {
             await elem.waitForExist({ timeout: this.shortDynamicWait() });
@@ -193,43 +174,6 @@ class actions {
         } catch (err) {
             allureReporter.addStep("unable to click " + logname + " as it is not displayed", this.getScreenshot(), 'failed');
             await assert.fail("unable to validate " + logname);
-        }
-    }
-
-   
-    async sendKeys(elem, value, logname) {
-        try {
-           await elem.waitForExist({ timeout: this.shortDynamicWait() });
-           await elem.click();
-           await elem.setValue(value);
-           allureReporter.addStep("able to enter " + value + " into the field " + logname, 'attachment', 'passed')
-           await browser.pause(2000);
-        } catch (err) {
-            allureReporter.addStep("unable to enter " + value + " into the field " + logname, this.getScreenshot(), 'failed');
-            assert.fail("unable to enter " + logname);
-        }
-    };
-
-    async selectDropDown(elem, name, logname) {
-        try {
-            await elem.waitForExist({ timeout: this.shortDynamicWait() });
-            await browser.waitUntil(() => elem.isClickable())
-            await elem.selectByAttribute('name', name);
-            allureReporter.addStep("able to select " + name + " from dropdown " + logname, 'attachment', 'passed');
-        } catch (err) {
-            allureReporter.addStep("unable to select " + name + " from dropdown " + logname, this.getScreenshot(), 'failed');
-            assert.fail("unable to select " + logname);
-        }
-    }
-
-    async dragAndDrop(elem, target) {
-        try {
-            await elem.waitForExist({ timeout: this.shortDynamicWait() });
-            await elem.dragAndDrop(target)
-            allureReporter.addStep("able to drag " + value + " from dropdown " + logname, 'attachment', 'passed');
-        } catch (err) {
-            allureReporter.addStep("unable to select " + value + " from dropdown " + logname, this.getScreenshot(), 'failed');
-            assert.fail("unable to select " + logname);
         }
     }
 
@@ -245,6 +189,57 @@ class actions {
         }
     }
 
+    async waitForClickable(elem){
+        await browser.waitUntil(
+            async () => (await elem.isClickable(),
+            {
+                timeout: 30000,
+                timeoutMsg: "@@@@@@@@@@@element is not clickable"
+            })
+        )}
+
+    async waitFordisplay(elem){
+        await browser.waitUntil(
+            async () => (await elem.isDisplayed(),
+            {
+                timeout: 30000,
+                timeoutMsg: '------------->Element'+elem+'is not displayed'
+            })
+        )}
+
+    async getElementID(elem){
+        await this.waitForClickable(elem);
+        return await elem.getAttribute('id');
+    }
+
+    async switchToIFrame(index){
+        await browser.pause(10000);
+        await browser.switchToFrame(index);
+        }
+      
+    async switchToParent(){
+        await browser.pause(3000); 
+        await browser.switchToFrame(null);
+        }
+
+    async switchToWindowWithTitle(title){
+        await browser.pause(3000);
+        await browser.switchWindow(title);
+    }
+
+    async closeWindow(title){
+        await browser.pause(2000);
+        await browser.closeWindow(title);
+    }
+
+    async clickEnter(){
+        await browser.pause(2000);
+        await browser.keys("\uE007");
+    }
+
+    async getScreenshot(){
+        await browser.takeScreenshot(); 
+       }
 
     shortDynamicWait() {
         return 15000;
