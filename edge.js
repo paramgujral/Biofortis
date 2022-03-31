@@ -13,7 +13,8 @@ exports.config = merge(
         maxInstances: 1
       },
         ],
-        services:['chromedriver'],
+        // services:['chromedriver'],
+        services:['selenium-standalone']
    
   },
   { clone: false },

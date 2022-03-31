@@ -1,5 +1,5 @@
 module.exports = {
-    url: 'https://automation.biofortis-test.net',
+    url: 'https://automation.biofortis-test.net/login',
     userName: 'Paramjeet',
     password: 'Bio123@@',
     newFormOption: "Biomaterial",
