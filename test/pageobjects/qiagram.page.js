@@ -44,7 +44,7 @@ class QiagramPage extends Page{
         await CommonActions.switchToIFrame(IFRAMEINDEX);
         await CommonActions.click(this.menuManage, "Manage");
         await CommonActions.switchToWindowWithTitle(TITLELABMATRIXMANAGEMENT);
-        await browser.pause(15000);
+        await browser.pause(8000);
     }
 
     async searchDatasource(datasource, datasourceType, searchWithBlank) {
@@ -53,7 +53,7 @@ class QiagramPage extends Page{
             await CommonActions.selectDropDown(this.dropdownDatasourceType, datasourceType, "Datasource Type");
         }
         await CommonActions.click(this.btnSearch, "Search Datasource");
-        await browser.pause(5000);
+        await browser.pause(2000);
         await CommonActions.validateElementIsNotDispalyed(this.noResult, 'Datasource found!', 'No datasource found!');
     }
     
@@ -74,7 +74,7 @@ class QiagramPage extends Page{
             allureReporter.addStep('WARNING!!! Number of datasource are very less.', 'attachment', 'broken')
         }
 
-        await browser.pause(5000);
+        await browser.pause(2000);
         do {
             countSnapshot  += await  this.datasourceTypeSnapshot.length;
             countSystem  += await  this.datasourceTypeSystem.length;

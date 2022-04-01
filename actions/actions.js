@@ -14,7 +14,7 @@ class actions {
             await elem.waitForDisplayed({ timeout: this.shortDynamicWait() });
             await elem.click();
             allureReporter.addStep("able to click " + logname, 'attachment', 'passed');
-            await browser.pause(2000);
+            await browser.pause(1000);
         } catch (err) {
             await console.log(err);
             allureReporter.addStep("unable to click " + logname + " as the element not displayed", this.getScreenshot(), 'failed');
@@ -24,11 +24,11 @@ class actions {
 
     async sendKeys(elem, value, logname) {
         try {
+            await browser.pause(1000);
            await elem.waitForExist({ timeout: this.shortDynamicWait() });
            await elem.click();
            await elem.setValue(value);
            allureReporter.addStep("able to enter " + value + " into the field " + logname, 'attachment', 'passed')
-           await browser.pause(2000);
         } catch (err) {
             allureReporter.addStep("unable to enter " + value + " into the field " + logname, this.getScreenshot(), 'failed');
             assert.fail("unable to enter " + logname);
