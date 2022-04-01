@@ -20,7 +20,7 @@ describe('Labmatrix Automation Suite', () => {
     })
 
     describe('01 - Datasource basic search and pagination', async () => {
-        it.only('Datasource basic search and pagination', async () => {
+        it('Datasource basic search and pagination', async () => {
             await HomePage.navigateToQiagram(); 
             await QiagramPage.navigateQiagramDatasourceManager();
             await QiagramPage.searchDatasource(Data.dataSourceSearch.datasourceName, Data.dataSourceSearch.datasourceType, "Yes");

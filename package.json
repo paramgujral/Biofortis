@@ -6,7 +6,7 @@
     "scripts": {
         "wdio": "wdio run wdio.conf.js",
         "report": "allure serve ./allure-results",
-        "sequence-run": "npx wdio chrome.js & npx wdio firefox.js & npx wdio edge.js",
+        "sequencial-run": "npx wdio chrome.js & npx wdio firefox.js & npx wdio edge.js",
         "parallel-run": "concurrently \"npx wdio chrome.js\" \"npx wdio firefox.js\" \"npx wdio edge.js\"",
         "chrome-run": "npx wdio chrome.js",
         "edge-run": "npx wdio edge.js",
